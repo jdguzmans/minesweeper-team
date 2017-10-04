@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
-import GameList from './GameList'
-import GameMap from './GameMap'
+import Game from './Game'
 import Logic from './../logic'
 
 class App extends Component {
@@ -9,28 +8,38 @@ class App extends Component {
     super(props)
     this.state = {
       // gameMap: this.props.gameMap
-      gameMap: Logic.createGameMap(10, 11)
+      game: {
+        gameMap: Logic.createGameMap(10, 11),
+        startedAt: new Date(),
+        score: 0
+      }
     }
   }
 
   selectSquare (i, j) {
-    let newMap = this.state.gameMap
-    newMap[i][j].isSelected = true
+    let newMap = Logic.selectedSquare(i, j, this.state.game.gameMap)
+    let score = newMap.map(row => {
+      return row.filter(x => {
+        return x.isSelected && x.value !== -1
+      }).length
+    }).reduce((total, x) => {
+      return total + x
+    })
     this.setState({
-      gameMap: newMap
+      gameMap: newMap,
+      score: score
     })
   }
 
   render () {
     return (
       <div className='row'>
-        <h1>HOLA</h1>
         <div className='col-sm-4'>
-          <GameList games={[]} />
+          <h1>HOLA</h1>
         </div>
         <div className='col-sm-8'>
-          <h3>TABLERO</h3>
-          <GameMap gameMap={this.state.gameMap} selectSquare={this.selectSquare.bind(this)} />
+          <h3>GAME</h3>
+          <Game game={this.state.game} score={this.state.score} selectSquare={this.selectSquare.bind(this)} />
         </div>
       </div>
     )

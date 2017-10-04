@@ -6,7 +6,7 @@ Logic.createGameMap = function (m, n) {
   gameMap = gameMap.map(row => {
     return row.map(col => {
       let rand = Math.random()
-      if (rand <= 0.25) return -1
+      if (rand <= 0.15) return -1
       else return 0
     })
   })
@@ -83,6 +83,27 @@ Logic.createGameMap = function (m, n) {
       }
     })
   })
+  return gameMap
+}
+
+Logic.selectedSquare = function (i, j, gameMap) {
+  if (!gameMap[i][j].isSelected) {
+    gameMap[i][j].isSelected = true
+    if (gameMap[i][j].value === 0) {
+      if (i !== 0) {
+        gameMap = this.selectedSquare(i - 1, j, gameMap)
+        if (j !== 0) gameMap = this.selectedSquare(i - 1, j - 1, gameMap)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i - 1, j + 1, gameMap)
+      }
+      if (i !== (gameMap.length - 1)) {
+        gameMap = this.selectedSquare(i + 1, j, gameMap)
+        if (j !== 0) gameMap = this.selectedSquare(i + 1, j - 1, gameMap)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i + 1, j + 1, gameMap)
+      }
+      if (j !== 0) gameMap = this.selectedSquare(i, j - 1, gameMap)
+      if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i, j + 1, gameMap)
+    }
+  }
   return gameMap
 }
 

@@ -1,6 +1,9 @@
 /* global */
 
 import React, { Component } from 'react'
+import GameMap from './GameMap'
+import Timer from './Timer'
+import Score from './Score'
 
 class Game extends Component {
   handleClick (e) {
@@ -10,13 +13,13 @@ class Game extends Component {
 
   render () {
     return (
-      <div className='col-sm-12 following'>
-        <div className='col-sm-6'>
-          <div className='row'>
-            <a href='#l' onClick={this.handleClick.bind(this)}>
-              <h4>{this.props.game.id}</h4>
-            </a>
-          </div>
+      <div>
+        <div className='row'>
+          <Timer date={this.props.game.startedAt} />
+          <Score score={this.props.score} />
+        </div>
+        <div className='row'>
+          <GameMap gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
         </div>
       </div>
     )

@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+
+.square {
+  height: 2em;
+  width: 2em
+}

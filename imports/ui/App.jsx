@@ -1,9 +1,26 @@
 import React, { Component } from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
 import GameList from './GameList'
-import Map from './Map'
+import GameMap from './GameMap'
+import Logic from './../logic'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      // gameMap: this.props.gameMap
+      gameMap: Logic.createGameMap(10, 11)
+    }
+  }
+
+  selectSquare (i, j) {
+    let newMap = this.state.gameMap
+    newMap[i][j].isSelected = true
+    this.setState({
+      gameMap: newMap
+    })
+  }
+
   render () {
     return (
       <div className='row'>
@@ -13,7 +30,7 @@ class App extends Component {
         </div>
         <div className='col-sm-8'>
           <h3>TABLERO</h3>
-          <Map map={[['.', '.', '.'], ['.', '.', '.'], ['.', '.', '.']]} />
+          <GameMap gameMap={this.state.gameMap} selectSquare={this.selectSquare.bind(this)} />
         </div>
       </div>
     )
@@ -25,7 +42,9 @@ App.propTypes = {
 
 export default createContainer(() => {
   return {
-    hola: 'hola',
-    games: []
+    games: [],
+    gameMap: [[{value: '.', isSelected: true}, {value: '.', isSelected: false}, {value: '.', isSelected: false}],
+          [{value: '.', isSelected: false}, {value: '.', isSelected: false}, {value: '.', isSelected: false}],
+          [{value: '.', isSelected: false}, {value: '*', isSelected: false}, {value: '.', isSelected: false}]]
   }
 }, App)

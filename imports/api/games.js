@@ -5,25 +5,21 @@ import { check } from 'meteor/check'
 export const Games = new Mongo.Collection('games')
 
 if (Meteor.isServer) {
-  // This code only runs on the server
-  // Only publish tasks that are public or belong to the current user
-  Meteor.publish('tasks', function tasksPublication () {
-    return Games.find({})
+  // this code only runs on the server
+  Meteor.publish('games', function tasksPublication () {
+    return Games.find({}).map(game => {
+      delete game['gameMap']
+      return game
+    })
   })
 }
 
 Meteor.methods({
-  'games.insert' (text) {
-    check(text, String)
-    // Make sure the user is logged in before inserting a task
-    if (!Meteor.userId()) {
-      throw new Meteor.Error('not-authorized')
-    }
+  'games.insert' (gameMap) {
+    check(gameMap, Object)
     Games.insert({
-      text,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username
+      gameMap: gameMap,
+      createdAt: new Date()
     })
   }
 })

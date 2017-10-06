@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 class Score extends Component {
   renderPlayerScores () {
-    return this.props.scores.players.map(playerScore => {
+    console.log(this.props)
+    return this.props.players.map(player => {
       return (
-        <h3>- {playerScore.username}: {playerScore.score}</h3>
+        <h3>- {player.username}: {player.score}: {player.lost ? 'Died' : 'Still alive'}</h3>
       )
     })
   }
@@ -12,7 +13,7 @@ class Score extends Component {
   render () {
     return (
       <div>
-        <h2>Total Score: {this.props.scores.total}pts</h2>
+        <h2>Total Score: {this.props.score}pts</h2>
         {this.renderPlayerScores()}
       </div>
     )

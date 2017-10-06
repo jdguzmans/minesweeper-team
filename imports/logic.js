@@ -86,23 +86,25 @@ Logic.createGameMap = function (m, n) {
   return gameMap
 }
 
-Logic.selectSquare = function (i, j, gameMap, username) {
+Logic.selectSquare = function (i, j, gameMap, username, color) {
   if (!gameMap[i][j].isSelected) {
     gameMap[i][j].isSelected = true
     gameMap[i][j].selectedBy = username
+    gameMap[i][j].color = color
+
     if (gameMap[i][j].value === 0) {
       if (i !== 0) {
-        gameMap = this.selectSquare(i - 1, j, gameMap, username)
-        if (j !== 0) gameMap = this.selectSquare(i - 1, j - 1, gameMap, username)
-        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i - 1, j + 1, gameMap, username)
+        gameMap = this.selectSquare(i - 1, j, gameMap, username, color)
+        if (j !== 0) gameMap = this.selectSquare(i - 1, j - 1, gameMap, username, color)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i - 1, j + 1, gameMap, username, color)
       }
       if (i !== (gameMap.length - 1)) {
         gameMap = this.selectSquare(i + 1, j, gameMap, username)
-        if (j !== 0) gameMap = this.selectSquare(i + 1, j - 1, gameMap, username)
-        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i + 1, j + 1, gameMap, username)
+        if (j !== 0) gameMap = this.selectSquare(i + 1, j - 1, gameMap, username, color)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i + 1, j + 1, gameMap, username, color)
       }
-      if (j !== 0) gameMap = this.selectSquare(i, j - 1, gameMap, username)
-      if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i, j + 1, gameMap, username)
+      if (j !== 0) gameMap = this.selectSquare(i, j - 1, gameMap, username, color)
+      if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i, j + 1, gameMap, username, color)
     }
   }
   return gameMap

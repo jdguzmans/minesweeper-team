@@ -13,7 +13,7 @@ class SendGameMessage extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    this.props.SendMessage(this.state.message)
+    this.props.sendMessage(this.state.message)
   }
 
   handleInputChange (e) {
@@ -23,6 +23,8 @@ class SendGameMessage extends Component {
 
   render () {
     return (
+      <div>
+
       <form className='form-horizontal' onSubmit={this.handleSubmit}>
         <div className='form-group'>
           <label className='control-label col-sm-2'>Send a message</label>
@@ -34,6 +36,8 @@ class SendGameMessage extends Component {
           </div>
         </div>
       </form>
+
+      </div>
     )
   }
 }

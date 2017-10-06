@@ -5,7 +5,7 @@ import GameMap from './GameMap'
 import Timer from './Timer'
 import Score from './Score'
 import InvitePlayer from './InvitePlayer'
-// import GameChat from './GameChat'
+import GameChat from './GameChat'
 
 class Game extends Component {
   render () {
@@ -22,7 +22,7 @@ class Game extends Component {
           <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
         </div>
         <div className='row'>
-          {false && <GameChat chat={this.props.game.chat} sendMessage={this.props.sendMessage} />}
+          <GameChat chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
         </div>
       </div>
     )

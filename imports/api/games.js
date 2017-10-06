@@ -75,9 +75,9 @@ Meteor.methods({
     Games.update({_id: game._id}, game)
   },
 
-  'games.sendMessage' (gameId, message, username) {
+  'games.sendMessage' (gameId, text, username) {
     Games.update({_id: gameId},
-      { $push: { chat: {username: username, message: message} } }
+      { $push: { chat: {username: username, text: text, date: new Date()} } }
         )
   }
 })

@@ -44,7 +44,8 @@ Meteor.methods({
       players: [ { username: Meteor.user().username, color: '#FF8080', lost: false, score: 0 } ],
       invites: [],
       score: 0,
-      chat: []
+      chat: [],
+      finished: false
     })
   },
 
@@ -56,25 +57,40 @@ Meteor.methods({
     else if (numberOfPlayers === 2) color = '#91fd81'
     Games.update({_id: gameId},
       { $pull: { invites: Meteor.user().username },
-        $addToSet: { players: { username: Meteor.user().username, color: color, lost: false } } }
+        $addToSet: { players: { username: Meteor.user().username, color: color, lost: false, score: 0 } } }
     )
   },
 
   'games.selectSquare' (i, j, game) {
     let username = Meteor.user().username
-    let color
+    let plays = true
     game.players.forEach(player => {
-      if (player.username === username) color = player.color
+      if (player.username === username && player.lost) plays = false
     })
-    let newMap = Logic.selectSquare(i, j, game.gameMap, username, color)
-    let scores = Logic.calculateScores(game.gameMap, username)
-    game.gameMap = newMap
-    game.score = scores.total
+    if (plays) {
+      let color
+      game.players.forEach(player => {
+        if (player.username === username) color = player.color
+      })
+      let newMap = Logic.selectSquare(i, j, game.gameMap, username, color)
+      let scores = Logic.calculateScores(game.gameMap, username)
+      game.gameMap = newMap
+      game.score = scores.total
 
-    game.players.forEach(player => {
-      if (player.username === username) player.score = scores.user
-    })
-    Games.update({_id: game._id}, game)
+      let finished = true
+      game.players.forEach(player => {
+        if (player.username === username) {
+          player.score = scores.user.score
+          player.lost = scores.user.lost
+        }
+        if (!player.lost) finished = true
+      })
+      if (finished) {
+        game.finished = true
+        game.finishedAt = new Date()
+      }
+      Games.update({_id: game._id}, game)
+    }
   },
 
   'games.sendMessage' (gameId, username, text) {

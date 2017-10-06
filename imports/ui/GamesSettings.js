@@ -18,7 +18,6 @@ class GamesSettings extends Component {
 
   renderGameInvites () {
     return this.props.invites.map(invite => {
-      console.log(invite)
       return (
         <button
           key={invite._id}

@@ -115,10 +115,7 @@ Logic.calculateScores = function (gameMap, username) {
   gameMap.forEach(row => {
     row.forEach(x => {
       if (x.isSelected && x.value !== -1) {
-        console.log(x.selectedBy)
-        console.log(username)
         totalScore = totalScore + 1
-        console.log(x.selectedBy === username)
         if (x.selectedBy === username) userScore = userScore + 1
       }
     })

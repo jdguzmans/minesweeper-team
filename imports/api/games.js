@@ -17,6 +17,18 @@ if (Meteor.isServer) {
       ]
     })
   })
+
+  Meteor.methods({
+    'games.invite' (gameId, username) {
+      if (!this.userId) throw new Meteor.Error('not-authorized')
+      let user = Users.findOne({username: username})
+      if (!user) throw new Meteor.Error('user not found')
+
+      Games.update({_id: gameId},
+        {$addToSet: { invites: user._id }}
+      )
+    }
+  })
 }
 
 Meteor.methods({
@@ -36,19 +48,6 @@ Meteor.methods({
       },
       chat: []
     })
-  },
-
-  'games.invite' (gameId, username) {
-    if (!this.userId) throw new Meteor.Error('not-authorized')
-    let user = Users.findOne({username: username})
-    if (!user) {
-      console.log('error')
-      throw new Meteor.Error('user not found')
-    }
-    console.log('paso')
-    Games.update({_id: gameId},
-      {$addToSet: { invites: user._id }}
-    )
   },
 
   'games.acceptInvite' (gameId) {
@@ -72,13 +71,12 @@ Meteor.methods({
         done = true
       }
     })
-    if (!done) game.scores.players.push({username: username, score: scores.user})
-    console.log(scores)
 
+    if (!done) game.scores.players.push({username: username, score: scores.user})
     Games.update({_id: game._id}, game)
   },
 
-  'games.sendMessage' (gameId, text, username) {
+  'games.sendMessage' (gameId, username, text) {
     Games.update({_id: gameId},
       { $push: { chat: {username: username, text: text, date: new Date()} } }
         )

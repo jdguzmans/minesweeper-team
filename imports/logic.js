@@ -99,7 +99,7 @@ Logic.selectSquare = function (i, j, gameMap, username, color) {
         if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i - 1, j + 1, gameMap, username, color)
       }
       if (i !== (gameMap.length - 1)) {
-        gameMap = this.selectSquare(i + 1, j, gameMap, username)
+        gameMap = this.selectSquare(i + 1, j, gameMap, username, color)
         if (j !== 0) gameMap = this.selectSquare(i + 1, j - 1, gameMap, username, color)
         if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i + 1, j + 1, gameMap, username, color)
       }

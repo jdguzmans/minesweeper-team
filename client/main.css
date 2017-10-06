@@ -1,8 +1,8 @@
 /* CSS declarations go here */
 
 .square {
-  height: 2em;
-  width: 2em
+  height: 4em;
+  width: 4em
 }
 
 .MineSweeper__time {
@@ -29,52 +29,52 @@
     height: 100%; }
 
 .Cell__number0 {
-    color: #ddd; 
-    height: 2em;
-    width: 2em;}
+    color: #ddd;
+    height: 4em;
+    width: 4em;}
 
 .Cell__number1 {
-    color: blue; 
-    height: 2em;
-    width: 2em ;}
+    color: blue;
+    height: 4em;
+    width: 4em ;}
 
 .Cell__number2 {
-    color: green; 
-    height: 2em;
-    width: 2em}
+    color: green;
+    height: 4em;
+    width: 4em}
 
 .Cell__number3 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: red; }
 
 .Cell__number4 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: #2b4b65; }
 
 .Cell__number5 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: #4f2702; }
 
 .Cell__number6 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: #0b615e; }
 
 .Cell__number7 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: black; }
 
 .Cell__number8 {
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     color: #666; }
 
 .Cell__number-1 {
-    height: 2em;
-    width: 2em;
-    color: black; 
+    height: 4em;
+    width: 4em;
+    color: black;
     background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}

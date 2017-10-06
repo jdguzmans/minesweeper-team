@@ -105,6 +105,7 @@ export default createContainer(() => {
   let invites = all.filter(game => {
     return game.invites.includes(username)
   })
+  console.log(games)
 
   return {
     user: Meteor.user(),

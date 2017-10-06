@@ -6,7 +6,7 @@ Logic.createGameMap = function (m, n) {
   gameMap = gameMap.map(row => {
     return row.map(col => {
       let rand = Math.random()
-      if (rand <= 0.15) return -1
+      if (rand <= 0.20) return -1
       else return 0
     })
   })
@@ -86,25 +86,49 @@ Logic.createGameMap = function (m, n) {
   return gameMap
 }
 
-Logic.selectedSquare = function (i, j, gameMap) {
+Logic.selectSquare = function (i, j, gameMap, username) {
   if (!gameMap[i][j].isSelected) {
     gameMap[i][j].isSelected = true
+    gameMap[i][j].selectedBy = username
     if (gameMap[i][j].value === 0) {
       if (i !== 0) {
-        gameMap = this.selectedSquare(i - 1, j, gameMap)
-        if (j !== 0) gameMap = this.selectedSquare(i - 1, j - 1, gameMap)
-        if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i - 1, j + 1, gameMap)
+        gameMap = this.selectSquare(i - 1, j, gameMap, username)
+        if (j !== 0) gameMap = this.selectSquare(i - 1, j - 1, gameMap, username)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i - 1, j + 1, gameMap, username)
       }
       if (i !== (gameMap.length - 1)) {
-        gameMap = this.selectedSquare(i + 1, j, gameMap)
-        if (j !== 0) gameMap = this.selectedSquare(i + 1, j - 1, gameMap)
-        if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i + 1, j + 1, gameMap)
+        gameMap = this.selectSquare(i + 1, j, gameMap, username)
+        if (j !== 0) gameMap = this.selectSquare(i + 1, j - 1, gameMap, username)
+        if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i + 1, j + 1, gameMap, username)
       }
-      if (j !== 0) gameMap = this.selectedSquare(i, j - 1, gameMap)
-      if (j !== (gameMap[i].length - 1)) gameMap = this.selectedSquare(i, j + 1, gameMap)
+      if (j !== 0) gameMap = this.selectSquare(i, j - 1, gameMap, username)
+      if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i, j + 1, gameMap, username)
     }
   }
   return gameMap
+}
+
+Logic.calculateScores = function (gameMap, username) {
+  let totalScore = 0
+  let userScore = 0
+
+  gameMap.forEach(row => {
+    row.forEach(x => {
+      if (x.isSelected && x.value !== -1) {
+        console.log(x.selectedBy)
+        console.log(username)
+        totalScore = totalScore + 1
+        console.log(x.selectedBy === username)
+        if (x.selectedBy === username) userScore = userScore + 1
+      }
+    })
+  })
+
+  let scores = {
+    total: totalScore,
+    user: userScore
+  }
+  return scores
 }
 
 export default Logic

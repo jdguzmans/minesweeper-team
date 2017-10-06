@@ -6,6 +6,7 @@ class GameMap extends Component {
     return row.map((square, j) => {
       return (
         <Square
+          key={i + ' ' + j}
           square={square}
           selectSquare={() => this.props.selectSquare(i, j)} />)
     })
@@ -14,7 +15,7 @@ class GameMap extends Component {
   render () {
     return this.props.gameMap.map((row, i) => {
       return (
-        <div className='row'>
+        <div className='row' key={i}>
           {this.renderRow(row, i)}
         </div>
       )

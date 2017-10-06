@@ -4,7 +4,7 @@ class Timer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      timer: (new Date()).getDate() - props.date.getDate()
+      timer: parseInt(((new Date()).getTime() - new Date(props.date).getTime()) / 1000)
     }
   }
 
@@ -15,10 +15,15 @@ class Timer extends Component {
       })
     }, 1000)
   }
+
+  componentWillUnmount () {
+    this.setState({})
+  }
+
   render () {
     return (
       <div>
-        <h1>Time: {this.state.timer}s</h1>
+        <h2>Time: {this.state.timer}s</h2>
       </div>
     )
   }

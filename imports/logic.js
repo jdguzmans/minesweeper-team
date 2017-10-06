@@ -99,7 +99,7 @@ Logic.selectSquare = function (i, j, gameMap, username, color) {
         if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i - 1, j + 1, gameMap, username, color)
       }
       if (i !== (gameMap.length - 1)) {
-        gameMap = this.selectSquare(i + 1, j, gameMap, username)
+        gameMap = this.selectSquare(i + 1, j, gameMap, username, color)
         if (j !== 0) gameMap = this.selectSquare(i + 1, j - 1, gameMap, username, color)
         if (j !== (gameMap[i].length - 1)) gameMap = this.selectSquare(i + 1, j + 1, gameMap, username, color)
       }
@@ -113,6 +113,7 @@ Logic.selectSquare = function (i, j, gameMap, username, color) {
 Logic.calculateScores = function (gameMap, username) {
   let totalScore = 0
   let userScore = 0
+  let lost = false
 
   gameMap.forEach(row => {
     row.forEach(x => {
@@ -120,12 +121,13 @@ Logic.calculateScores = function (gameMap, username) {
         totalScore = totalScore + 1
         if (x.selectedBy === username) userScore = userScore + 1
       }
+      if (x.isSelected && x.value === -1 && x.selectedBy === username) lost = true
     })
   })
 
   let scores = {
     total: totalScore,
-    user: userScore
+    user: {score: userScore, lost: lost}
   }
   return scores
 }

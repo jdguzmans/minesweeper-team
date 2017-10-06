@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
-class Score extends Component {
+class GameStats extends Component {
   renderPlayerScores () {
-    console.log(this.props)
     return this.props.players.map(player => {
       return (
         <h3>- {player.username}: {player.score}: {player.lost ? 'Died' : 'Still alive'}</h3>
@@ -20,4 +19,4 @@ class Score extends Component {
   }
 }
 
-export default Score
+export default GameStats

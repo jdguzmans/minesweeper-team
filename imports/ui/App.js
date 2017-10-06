@@ -56,7 +56,7 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='highScoresContainer'>
         <div className='col-sm-3'>
           <AccountsUIWrapper />
           {this.props.user &&

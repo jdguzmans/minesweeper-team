@@ -6,7 +6,7 @@
 }
 
 .mainContainer{
-    background-color: #d2deeb;
+    background-color: #FFF0D1;
     padding-left: 0.5cm;
     padding-top: 0.2cm;
     padding-bottom: 0.5cm;
@@ -20,20 +20,45 @@
 }
 
 .containers2{
-     background-color: #c8d9ed;
-     border-radius: 15px;
+    background-color: #DDFFDF;
+    border-radius: 15px;
     display: block;
     margin: auto;
     text-align: center;
 }
 
 .containers3{
-    background-color: #4663ac;
+    background-color: #DEFF98;
     border-radius: 15px;
 }
 
-.chatcontainer{
+.chatContainer{
+    background-color: #E8BBA6;
     border-radius: 2px 50px 30px 20px;
+}
+
+.gameContainer{
+    background-color: white;
+    border-radius: 15px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 1cm;
+}
+
+.highScoresContainer{
+    background-color: #D1BEE8;
+    border-radius: 15px;
+}
+
+.newGame{
+    margin-top: 1cm;
+}
+
+.center-text{
+    display: block;
+    margin: auto;
+    text-align: center;
 }
 
 .square {

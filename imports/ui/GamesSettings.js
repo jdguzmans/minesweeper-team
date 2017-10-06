@@ -32,7 +32,7 @@ class GamesSettings extends Component {
   render () {
     return (
       <div>
-        <div className = 'mainContainer'>
+        <div className = 'mainContainer newGame'>
           <h2>New Game</h2>
           <button
             onClick={this.props.newGame}>

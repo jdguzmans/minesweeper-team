@@ -10,8 +10,8 @@ import GameChat from './GameChat'
 class Game extends Component {
   render () {
     return (
-      <div>
-        <h1>Game</h1>
+      <div >
+        <h1 className='mainContainer'>Minesweeper Team</h1>
         <div className='row'>
           <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
         </div>

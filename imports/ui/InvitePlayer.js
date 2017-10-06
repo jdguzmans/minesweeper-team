@@ -23,6 +23,8 @@ class InvitePlayer extends Component {
 
   render () {
     return (
+
+      <div className =' mainContainer containers2'> 
       <form className='form-horizontal' onSubmit={this.handleSubmit}>
         <div className='form-group'>
           <label className='control-label col-sm-2'>Invite a Player</label>
@@ -34,6 +36,7 @@ class InvitePlayer extends Component {
           </div>
         </div>
       </form>
+    </div>
     )
   }
 }

@@ -1,5 +1,41 @@
 /* CSS declarations go here */
 
+@font-face {
+    font-family: DeliciousRomanRegular;
+    src: url(/Delicious-Roman-R.otf);
+}
+
+.mainContainer{
+    background-color: #d2deeb;
+    padding-left: 0.5cm;
+    padding-top: 0.2cm;
+    padding-bottom: 0.5cm;
+    color: #444444;
+    border-radius: 5px 5px 5px 5px;
+    font-family: DeliciousRomanRegular;
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 0.2cm;
+}
+
+.containers2{
+     background-color: #c8d9ed;
+     border-radius: 15px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.containers3{
+    background-color: #4663ac;
+    border-radius: 15px;
+}
+
+.chatcontainer{
+    border-radius: 2px 50px 30px 20px;
+}
+
 .square {
   height: 2em;
   width: 2em

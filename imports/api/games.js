@@ -40,9 +40,12 @@ Meteor.methods({
 
   'games.invite' (gameId, username) {
     if (!this.userId) throw new Meteor.Error('not-authorized')
-
     let user = Users.findOne({username: username})
-    if (!user) throw new Meteor.Error('user not found')
+    if (!user) {
+      console.log('error')
+      throw new Meteor.Error('user not found')
+    }
+    console.log('paso')
     Games.update({_id: gameId},
       {$addToSet: { invites: user._id }}
     )

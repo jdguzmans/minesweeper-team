@@ -14,7 +14,7 @@ class GameChat extends Component {
       <div>
         <h3>GameChat</h3>
         <div className='row'>
-          <SendGameMessage />
+          <SendGameMessage sendMessage={this.props.sendMessage} />
         </div>
         <div className=' row'>
           {this.renderMessages()}

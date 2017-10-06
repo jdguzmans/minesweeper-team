@@ -46,8 +46,11 @@ class App extends Component {
       this.setState({
         game: game
       })
-      console.log(game)
     }
+  }
+
+  sendMessage (message) {
+    Meteor.call('games.sendMessage', this.state.game._id, this.props.user.username, message)
   }
 
   render () {
@@ -71,6 +74,7 @@ class App extends Component {
             <Game
               game={this.state.game}
               invitePlayer={this.invitePlayer.bind(this)}
+              sendMessage={this.sendMessage.bind(this)}
               scores={this.state.game.scores}
               selectSquare={this.selectSquare.bind(this)} />
           </div>

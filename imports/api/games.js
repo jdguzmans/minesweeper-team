@@ -10,10 +10,11 @@ export const Games = new Mongo.Collection('games')
 if (Meteor.isServer) {
   // this code only runs on the server
   Meteor.publish('games', function gamesPublication () {
+    let username = Meteor.user() ? Meteor.user().username : undefined
     return Games.find({
       $or: [
-        { players: { $in: [this.userId] } },
-        { invites: { $in: [this.userId] } }
+        { 'players.username': { $in: [username] } },
+        { invites: { $in: [username] } }
       ]
     })
   })
@@ -23,9 +24,10 @@ if (Meteor.isServer) {
       if (!this.userId) throw new Meteor.Error('not-authorized')
       let user = Users.findOne({username: username})
       if (!user) throw new Meteor.Error('user not found')
-
+      let game = Games.findOne({_id: gameId})
+      if (game.players.length === 3) throw new Meteor.Error('player number limit of 3')
       Games.update({_id: gameId},
-        {$addToSet: { invites: user._id }}
+        {$addToSet: { invites: username }}
       )
     }
   })
@@ -35,44 +37,43 @@ Meteor.methods({
   'games.newGame' () {
     if (!this.userId) throw new Meteor.Error('not-authorized')
 
-    let gameMap = Logic.createGameMap(10, 11)
+    let gameMap = Logic.createGameMap(4, 5)
     Games.insert({
       gameMap: gameMap,
       createdAt: new Date(),
-      players: [this.userId],
+      players: [ { username: Meteor.user().username, color: '#fe0002', lost: false, score: 0 } ],
       invites: [],
-      scores: {
-        total: 0,
-        players: [
-        ]
-      },
+      score: 0,
       chat: []
     })
   },
 
   'games.acceptInvite' (gameId) {
     if (!this.userId) throw new Meteor.Error('not-authorized')
+    let numberOfPlayers = Games.findOne({_id: gameId}).length
+    let color
+    if (numberOfPlayers === 1) color = '#0021bc'
+    else if (numberOfPlayers === 2) color = '#009603'
     Games.update({_id: gameId},
-      { $pull: { invites: this.userId },
-        $addToSet: { players: this.userId }}
+      { $pull: { invites: Meteor.user().username },
+        $addToSet: { players: { username: Meteor.user().username, color: color, lost: false } } }
     )
   },
 
-  'games.selectSquare' (i, j, game, username) {
-    let newMap = Logic.selectSquare(i, j, game.gameMap, username)
+  'games.selectSquare' (i, j, game) {
+    let username = Meteor.user().username
+    let color
+    game.players.forEach(player => {
+      if (player._id === this.userId) color = player.color
+    })
+    let newMap = Logic.selectSquare(i, j, game.gameMap, username, color)
     let scores = Logic.calculateScores(game.gameMap, username)
     game.gameMap = newMap
-    game.scores.total = scores.total
+    game.score = scores.total
 
-    let done = false
-    game.scores.players.forEach(player => {
-      if (player.username === username) {
-        player.score = scores.user
-        done = true
-      }
+    game.players.forEach(player => {
+      if (player.username === username) player.score = scores.user
     })
-
-    if (!done) game.scores.players.push({username: username, score: scores.user})
     Games.update({_id: game._id}, game)
   },
 

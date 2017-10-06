@@ -5,6 +5,7 @@ import { Games } from '../api/games.js'
 import Game from './Game'
 import AccountsUIWrapper from './AccountsUIWrapper'
 import GamesSettings from './GamesSettings'
+import Instructions from './Instructions'
 
 class App extends Component {
   constructor (props) {
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   selectSquare (i, j) {
-    Meteor.call('games.selectSquare', i, j, this.state.game, this.props.user.username)
+    Meteor.call('games.selectSquare', i, j, this.state.game)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -56,7 +57,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        <div className='col-sm-4'>
+        <div className='col-sm-3'>
           <AccountsUIWrapper />
           {this.props.user &&
             <GamesSettings
@@ -68,17 +69,21 @@ class App extends Component {
             />
           }
         </div>
-        {this.state.game &&
-          <div className='col-sm-8'>
-            <h1>Game</h1>
+        <div className='col-sm-6'>
+          {this.state.game &&
             <Game
               game={this.state.game}
               invitePlayer={this.invitePlayer.bind(this)}
               sendMessage={this.sendMessage.bind(this)}
               scores={this.state.game.scores}
               selectSquare={this.selectSquare.bind(this)} />
-          </div>
-          }
+            }
+          {!this.state.game && <Instructions /> }
+        </div>
+
+        <div className='col-sm-3'>
+          <h1>Highscores</h1>
+        </div>
       </div>
     )
   }
@@ -89,12 +94,16 @@ App.propTypes = {
 
 export default createContainer(() => {
   Meteor.subscribe('games')
+  let username = Meteor.user() ? Meteor.user().username : undefined
   let all = Games.find({}).fetch()
+
   let games = all.filter(game => {
-    return game.players.includes(Meteor.user()._id)
+    return game.players.filter(player => {
+      return player.username === username
+    }).length === 1
   })
   let invites = all.filter(game => {
-    return game.invites.includes(Meteor.user()._id)
+    return game.invites.includes(username)
   })
 
   return {

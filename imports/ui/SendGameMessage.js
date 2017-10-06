@@ -25,17 +25,17 @@ class SendGameMessage extends Component {
     return (
       <div>
 
-      <form className='form-horizontal' onSubmit={this.handleSubmit}>
-        <div className='form-group'>
-          <label className='control-label col-sm-2'>Send a message</label>
-          <div className='col-sm-8'>
-            <input name='message' type='text' className='form-control' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
+        <form className='form-horizontal' onSubmit={this.handleSubmit}>
+          <div className='form-group'>
+            <label className='control-label col-sm-2'>Send a message</label>
+            <div className='col-sm-8'>
+              <input name='message' type='text' className='form-control' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
+            </div>
+            <div className='col-sm-2'>
+              <button type='submit' className='btn btn-default'>Send</button>
+            </div>
           </div>
-          <div className='col-sm-2'>
-            <button type='submit' className='btn btn-default'>Send</button>
-          </div>
-        </div>
-      </form>
+        </form>
 
       </div>
     )

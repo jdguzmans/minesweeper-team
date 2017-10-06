@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import GameMessage from './GameMessage'
-import SendGameMessage from '/SendGameMessage'
+import SendGameMessage from './SendGameMessage'
 
 class GameChat extends Component {
   renderMessages () {

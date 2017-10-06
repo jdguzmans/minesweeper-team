@@ -4,3 +4,77 @@
   height: 2em;
   width: 2em
 }
+
+.MineSweeper__time {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: url("../assets/images/icn_clock_01.png") no-repeat left center;
+    padding-left: 30px;}
+
+.MineSweeper__face .playing {
+      background: url("../images/icn_face_01.png") no-repeat center center, #ccc; }
+
+.MineSweeper__face .clear {
+      background: url("../images/icn_face_02.png") no-repeat center center, #ccc; }
+
+.MineSweeper__face .gameover {
+      background: url("../images/icn_face_03.png") no-repeat center center, #ccc; }
+
+.Cell__bomb {
+    background: url("../images/icn_bomb_01.png") no-repeat center center;
+    text-indent: -9999px;
+    overflow: hidden;
+    display: block;
+    height: 100%; }
+
+.Cell__number0 {
+    color: #ddd; 
+    height: 2em;
+    width: 2em;}
+
+.Cell__number1 {
+    color: blue; 
+    height: 2em;
+    width: 2em ;}
+
+.Cell__number2 {
+    color: green; 
+    height: 2em;
+    width: 2em}
+
+.Cell__number3 {
+    height: 2em;
+    width: 2em;
+    color: red; }
+
+.Cell__number4 {
+    height: 2em;
+    width: 2em;
+    color: #2b4b65; }
+
+.Cell__number5 {
+    height: 2em;
+    width: 2em;
+    color: #4f2702; }
+
+.Cell__number6 {
+    height: 2em;
+    width: 2em;
+    color: #0b615e; }
+
+.Cell__number7 {
+    height: 2em;
+    width: 2em;
+    color: black; }
+
+.Cell__number8 {
+    height: 2em;
+    width: 2em;
+    color: #666; }
+
+.Cell__number-1 {
+    height: 2em;
+    width: 2em;
+    color: black; 
+    background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}

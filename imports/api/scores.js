@@ -11,3 +11,13 @@ if (Meteor.isServer) {
     return Scores.find({})
   })
 }
+
+Meteor.methods({
+  'scores.addScore' (score, players, time) {
+    players.forEach(player => {
+      Scores.upsert({username: player.username}, {
+        $push: {games: {totalScore: score, playerScore: player.score, time: time}}
+      })
+    })
+  }
+})

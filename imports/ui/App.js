@@ -42,7 +42,7 @@ class App extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.state.game) {
-      let game = nextProps.games.filter(game => {
+      let game = nextProps.games.concat(nextProps.finishedGames).filter(game => {
         return game._id === this.state.game._id
       })[0]
       this.setState({
@@ -101,24 +101,14 @@ export default createContainer(() => {
   let username = Meteor.user() ? Meteor.user().username : undefined
   let all = Games.find({}).fetch()
 
-  let games = all.filter(game => {
-    if (!game.finished) {
-      return game.players.filter(player => {
-        return player.username === username
-      }).length === 1
-    }
-  })
-
-  let finishedGames = all.filter(game => {
-    if (game.finished) {
-      return game.players.filter(player => {
-        return player.username === username
-      }).length === 1
-    }
-  })
-
-  let invites = all.filter(game => {
-    return game.invites.includes(username)
+  let games = []
+  let finishedGames = []
+  let invites = []
+  all.forEach(game => {
+    if (game.players.filter(player => { return player.username === username }).length === 1) {
+      if (game.finished) finishedGames.push(game)
+      else games.push(game)
+    } else if (game.invites.includes(username)) invites.push(game)
   })
 
   let scores = Scores.find({}).fetch()

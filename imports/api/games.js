@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo'
 import { Meteor } from 'meteor/meteor'
 // import { check } from 'meteor/check'
-
 import Logic from './../logic'
+
 const Users = Meteor.users
 
 export const Games = new Mongo.Collection('games')
@@ -83,11 +83,13 @@ Meteor.methods({
           player.score = scores.user.score
           player.lost = scores.user.lost
         }
-        if (!player.lost) finished = true
+        if (!player.lost) finished = false
       })
       if (finished) {
         game.finished = true
         game.finishedAt = new Date()
+        let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
+        Meteor.call('scores.addScore', scores.total, game.players, time)
       }
       Games.update({_id: game._id}, game)
     }

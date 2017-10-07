@@ -16,6 +16,19 @@ class GamesSettings extends Component {
     })
   }
 
+  renderFinishedGames () {
+    return this.props.finishedGames.map(game => {
+      return (
+        <button
+          key={game._id}
+          onClick={() => this.props.selectGame(game._id)}
+        >
+          {game._id}
+        </button>
+      )
+    })
+  }
+
   renderGameInvites () {
     return this.props.invites.map(invite => {
       return (
@@ -32,20 +45,24 @@ class GamesSettings extends Component {
   render () {
     return (
       <div>
-        <div className = 'mainContainer newGame'>
+        <div className='mainContainer newGame'>
           <h2>New Game</h2>
           <button
             onClick={this.props.newGame}>
             Create
             </button>
         </div>
-        <div className = 'mainContainer'>
+        <div className='mainContainer'>
+          <h2>Game Invites</h2>
+          {this.renderGameInvites()}
+        </div>
+        <div className='mainContainer'>
           <h2>Current Games</h2>
           {this.renderGames()}
         </div>
-        <div className = 'mainContainer'>
-          <h2>Game Invites</h2>
-          {this.renderGameInvites()}
+        <div className='mainContainer'>
+          <h2>Finished Games</h2>
+          {this.renderFinishedGames()}
         </div>
       </div>
     )

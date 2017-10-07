@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Games } from '../api/games.js'
+import { Scores } from '../api/scores.js'
 import Game from './Game'
 import AccountsUIWrapper from './AccountsUIWrapper'
 import GamesSettings from './GamesSettings'
@@ -27,7 +28,7 @@ class App extends Component {
   }
 
   selectGame (gameId) {
-    let game = this.props.games.filter(game => {
+    let game = this.props.games.concat(this.props.finishedGames).filter(game => {
       return game._id === gameId
     })[0]
     this.setState({
@@ -65,6 +66,7 @@ class App extends Component {
               invites={this.props.invites}
               acceptInvite={this.acceptInvite.bind(this)}
               games={this.props.games}
+              finishedGames={this.props.finishedGames}
               selectGame={this.selectGame.bind(this)}
             />
           }
@@ -94,21 +96,38 @@ App.propTypes = {
 
 export default createContainer(() => {
   Meteor.subscribe('games')
+  Meteor.subscribe('scores')
+
   let username = Meteor.user() ? Meteor.user().username : undefined
   let all = Games.find({}).fetch()
 
   let games = all.filter(game => {
-    return game.players.filter(player => {
-      return player.username === username
-    }).length === 1
+    if (!game.finished) {
+      return game.players.filter(player => {
+        return player.username === username
+      }).length === 1
+    }
   })
+
+  let finishedGames = all.filter(game => {
+    if (game.finished) {
+      return game.players.filter(player => {
+        return player.username === username
+      }).length === 1
+    }
+  })
+
   let invites = all.filter(game => {
     return game.invites.includes(username)
   })
 
+  let scores = Scores.find({}).fetch()
+
   return {
     user: Meteor.user(),
     games: games,
-    invites: invites
+    finishedGames: finishedGames,
+    invites: invites,
+    scores: scores
   }
 }, App)

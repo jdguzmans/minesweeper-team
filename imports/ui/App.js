@@ -62,26 +62,28 @@ class App extends Component {
   }
 
   sendMessage (message) {
-    Meteor.call('games.sendMessage', this.state.game._id, this.props.user.username, message)
+    Meteor.call('games.sendMessage', this.state.game, message)
   }
 
   render () {
     return (
       <div>
         <div className='row'>
-          <div className='center-text col-sm-offset-1 col-sm-3'>
+          <div className='col-sm-offset-1 col-sm-3'>
             <AccountsUIWrapper />
-            {this.props.user &&
-            <GamesSettings
-              newGame={this.newGame.bind(this)}
-              invites={this.props.invites}
-              acceptInvite={this.acceptInvite.bind(this)}
-              declineInvite={this.acceptInvite.bind(this)}
-              games={this.props.games}
-              finishedGames={this.props.finishedGames}
-              selectGame={this.selectGame.bind(this)}
+            <div className='center-text'>
+              {this.props.user &&
+              <GamesSettings
+                newGame={this.newGame.bind(this)}
+                invites={this.props.invites}
+                acceptInvite={this.acceptInvite.bind(this)}
+                declineInvite={this.acceptInvite.bind(this)}
+                games={this.props.games}
+                finishedGames={this.props.finishedGames}
+                selectGame={this.selectGame.bind(this)}
             />
           }
+            </div>
           </div>
           <div className='col-sm-7'>
             {this.state.game &&
@@ -116,6 +118,9 @@ export default createContainer(() => {
   let finishedGames = []
   let invites = []
   all.forEach(game => {
+    game.chat = game.chat.sort((a, b) => {
+      return (new Date(b.date).getTime()) - (new Date(a.date).getTime())
+    })
     if (game.players.filter(player => { return player.username === username }).length === 1) {
       if (game.finished) finishedGames.push(game)
       else games.push(game)

@@ -27,7 +27,7 @@ class InvitePlayer extends Component {
   render () {
     return (
 
-      <div className=' mainContainer containers2'>
+      <div>
         <form className='form-horizontal' onSubmit={this.handleSubmit}>
           <div className='form-group'>
             <label className='control-label col-sm-2'>Invite</label>

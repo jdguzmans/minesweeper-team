@@ -12,7 +12,17 @@ class Game extends Component {
     return this.props.game.invites.map(invite => {
       return (
         <div className='row'>
-          - {invite}
+          <h4>- {invite}</h4>
+        </div>
+      )
+    })
+  }
+
+  renderPlayers () {
+    return this.props.game.players.map(player => {
+      return (
+        <div className='row'>
+          <h4>- {player.username}</h4>
         </div>
       )
     })
@@ -20,16 +30,22 @@ class Game extends Component {
 
   render () {
     return (
-      <div className='center-text'>
+      <div>
         {!this.props.game.finished &&
-          <div className='row'>
-            <h1>Invites</h1>
-            <div className='col-sm-6'>
-              <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
+          <div className='row center-text'>
+            <h1>Players</h1>
+            <div className='row'>
+              <div className='col-sm-offset-1 col-sm-5'>
+                <h3>Invited Players:</h3>
+                {this.renderGameInvites()}
+              </div>
+              <div className='col-sm-5'>
+                <h3>Playing:</h3>
+                {this.renderPlayers()}
+              </div>
             </div>
-            <div className='col-sm-6'>
-              <h3>Invited Players:</h3>
-              {this.renderGameInvites()}
+            <div>
+              <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
             </div>
           </div>
         }

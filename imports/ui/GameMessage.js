@@ -4,17 +4,22 @@ class GameMessage extends Component {
   constructor (props) {
     super(props)
     let date = new Date(props.message.date)
-    this.shownDate = date.toString()
+    this.shownDate = ''
+    this.shownDate = this.shownDate + date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + (date.getDate() <= 9 ? '0' : '') +
+    date.getDate() + ' ' + date.getHours() + ':' + (date.getMinutes() <= 9 ? '0' : '') + date.getMinutes()
   }
 
   render () {
     return (
-      <div className='col-sm-12'>
-        <div className='col-sm-4'>
-          <h5>{this.shownDate}</h5>
+      <div className='row'>
+        <div className='col-sm-3'>
+          <h5 style={{color: this.props.message.color}}>{this.props.message.username}</h5>
         </div>
-        <div className='col-sm-8'>
-          <p>{this.props.message.text}</p>
+        <div className='col-sm-6'>
+          <h6>{this.props.message.text}</h6>
+        </div>
+        <div className='col-sm-3'>
+          <h5>{this.shownDate}</h5>
         </div>
       </div>
     )

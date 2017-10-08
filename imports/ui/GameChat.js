@@ -11,10 +11,12 @@ class GameChat extends Component {
 
   render () {
     return (
-      <div className= 'mainContainer chatContainer'>
+      <div className='row'>
         <h3>GameChat</h3>
-        <div className='row'>
-          <SendGameMessage sendMessage={this.props.sendMessage} />
+        <div>
+          <div className='col-sm-offset-1 col-sm-10'>
+            <SendGameMessage sendMessage={this.props.sendMessage} />
+          </div>
         </div>
         <div className='row'>
           {this.renderMessages()}

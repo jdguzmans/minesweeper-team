@@ -7,13 +7,13 @@ class GameStats extends Component {
         <div className='row'>
           <div className='col-sm-offset-1 col-sm-10'>
             <div className='col-sm-4'>
-              <p style={{color: player.color}}>{player.username} </p>
+              <h4 style={{color: player.color}}>{player.username} </h4>
             </div>
             <div className='col-sm-4'>
-              <p> {player.score}pts </p>
+              <h4> {player.score}pts </h4>
             </div>
             <div className='col-sm-4'>
-              {player.lost ? <p style={{color: 'red'}}>Dead</p> : <p style={{color: 'green'}}>Alive</p>}
+              {player.lost ? <h4 style={{color: 'red'}}>Dead</h4> : <h4 style={{color: 'green'}}>Alive</h4>}
             </div>
           </div>
         </div>

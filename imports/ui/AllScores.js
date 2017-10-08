@@ -31,7 +31,7 @@ class AllScores extends Component {
     }, {
       Header: 'Speed',
       columns: [{
-        Header: '[ pts/s ]',
+        Header: '[ pts/min ]',
         accessor: 'speed'
       }]
     }]

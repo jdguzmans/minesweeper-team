@@ -58,7 +58,7 @@ class GamesSettings extends Component {
   render () {
     return (
       <div>
-        <div className='mainContainer newGame'>
+        <div>
           <h2>New Game</h2>
           <button
             onClick={this.props.newGame}
@@ -66,15 +66,15 @@ class GamesSettings extends Component {
             Create
           </button>
         </div>
-        <div className='mainContainer'>
+        <div>
           <h2>Game Invites</h2>
           {this.renderGameInvites()}
         </div>
-        <div className='mainContainer'>
+        <div>
           <h2>Current Games</h2>
           {this.renderGames()}
         </div>
-        <div className='mainContainer'>
+        <div>
           <h2>Finished Games</h2>
           {this.renderFinishedGames()}
         </div>

@@ -24,7 +24,6 @@ class SendGameMessage extends Component {
   render () {
     return (
       <div>
-
         <form className='form-horizontal' onSubmit={this.handleSubmit}>
           <div className='form-group'>
             <label className='control-label col-sm-2'>Send a message</label>

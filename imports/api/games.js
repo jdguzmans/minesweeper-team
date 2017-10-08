@@ -105,9 +105,20 @@ Meteor.methods({
     }
   },
 
-  'games.sendMessage' (gameId, username, text) {
-    Games.update({_id: gameId},
-      { $push: { chat: {username: username, text: text, date: new Date()} } }
+  'games.sendMessage' (game, text) {
+    let username = Meteor.user().username
+
+    let color
+    game.players.forEach(player => {
+      if (player.username === username) color = player.color
+    })
+
+    Games.update({_id: game._id},
+      {
+        $push: {
+          chat: {username: username, text: text, date: new Date(), color: color}
+        }
+      }
         )
   }
 })

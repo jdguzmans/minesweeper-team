@@ -24,7 +24,7 @@ class GameStats extends Component {
   render () {
     return (
       <div>
-        <h2>Total Score: {this.props.score}pts</h2>
+        <h2 className='font'>Total Score: {this.props.score}pts</h2>
         {this.renderPlayerScores()}
       </div>
     )

@@ -32,15 +32,15 @@ class Game extends Component {
     return (
       <div>
         {!this.props.game.finished &&
-          <div className='row center-text'>
-            <h1>Players</h1>
+          <div className='row center-text mainContainer'>
+            <h1 className='font'>Players</h1>
             <div className='row'>
               <div className='col-sm-offset-1 col-sm-5'>
-                <h3>Invited Players:</h3>
+                <h3 className='font'>Invited Players:</h3>
                 {this.renderGameInvites()}
               </div>
               <div className='col-sm-5'>
-                <h3>Playing:</h3>
+                <h3 className='font'>Playing:</h3>
                 {this.renderPlayers()}
               </div>
             </div>
@@ -49,11 +49,14 @@ class Game extends Component {
             </div>
           </div>
         }
+
+        <div className='gameContainer'> 
+
         <div className='row center-text'>
-          <h1>Game {this.props.game.finished && 'Over'}</h1>
+          <h1 className='font'>Game {this.props.game.finished && 'Over'}</h1>
         </div>
         <div className='row center-text'>
-          <h2>Id: {this.props.game._id}</h2>
+          <h2 className='font'>Id: {this.props.game._id}</h2>
         </div>
         <div className='row center-text'>
           <Timer finished={this.props.game.finished} finishedAt={this.props.game.finishedAt} date={this.props.game.createdAt} />
@@ -62,7 +65,10 @@ class Game extends Component {
         <div className='row center-text'>
           <GameMap gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
         </div>
-        <div className='row'>
+
+        </div>
+
+        <div className='row mainContainer'>
           <GameChat chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
         </div>
       </div>

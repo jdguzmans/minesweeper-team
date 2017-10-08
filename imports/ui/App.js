@@ -71,7 +71,7 @@ class App extends Component {
         <div className='row'>
           <div className='col-sm-offset-1 col-sm-3'>
             <AccountsUIWrapper />
-            <div className='center-text'>
+            <div className='center-text mainContainer'>
               {this.props.user &&
               <GamesSettings
                 newGame={this.newGame.bind(this)}

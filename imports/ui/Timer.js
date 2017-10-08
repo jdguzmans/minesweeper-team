@@ -31,7 +31,7 @@ class Timer extends Component {
   render () {
     return (
       <div>
-        <h2>Time: {this.state.timer}s</h2>
+        <h2 className='font'>Time: {this.state.timer}s</h2>
       </div>
     )
   }

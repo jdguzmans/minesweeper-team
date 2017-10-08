@@ -59,7 +59,7 @@ class GamesSettings extends Component {
     return (
       <div>
         <div>
-          <h2>New Game</h2>
+          <h2 className='font'>New Game</h2>
           <button
             onClick={this.props.newGame}
             className='btn btn-success'>
@@ -67,15 +67,15 @@ class GamesSettings extends Component {
           </button>
         </div>
         <div>
-          <h2>Game Invites</h2>
+          <h2 className='font'>Game Invites</h2>
           {this.renderGameInvites()}
         </div>
         <div>
-          <h2>Current Games</h2>
+          <h2 className='font'>Current Games</h2>
           {this.renderGames()}
         </div>
         <div>
-          <h2>Finished Games</h2>
+          <h2 className='font'>Finished Games</h2>
           {this.renderFinishedGames()}
         </div>
       </div>

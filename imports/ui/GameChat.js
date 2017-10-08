@@ -12,7 +12,7 @@ class GameChat extends Component {
   render () {
     return (
       <div className='row'>
-        <h3>GameChat</h3>
+        <h3 className='font'>GameChat</h3>
         <div>
           <div className='col-sm-offset-1 col-sm-10'>
             <SendGameMessage sendMessage={this.props.sendMessage} />

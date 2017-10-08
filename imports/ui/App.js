@@ -71,8 +71,8 @@ class App extends Component {
         <div className='row'>
           <div className='col-sm-offset-1 col-sm-3'>
             <AccountsUIWrapper />
+            {this.props.user &&
             <div className='center-text mainContainer'>
-              {this.props.user &&
               <GamesSettings
                 newGame={this.newGame.bind(this)}
                 invites={this.props.invites}
@@ -82,8 +82,8 @@ class App extends Component {
                 finishedGames={this.props.finishedGames}
                 selectGame={this.selectGame.bind(this)}
             />
-          }
             </div>
+          }
           </div>
           <div className='col-sm-7'>
             {this.state.game &&

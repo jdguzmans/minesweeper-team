@@ -1,6 +1,5 @@
-/* CSS declarations go here */
 
-@font-face {
+/*@font-face {
     font-family: DeliciousRomanRegular;
     src: url(/Delicious-Roman-R.otf);
 }
@@ -53,7 +52,7 @@
 
 .newGame{
     margin-top: 1cm;
-}
+}*/
 
 .center-text{
     display: block;
@@ -62,11 +61,11 @@
 }
 
 .square {
-  height: 4em;
-  width: 4em
+  height: 3em;
+  width: 3em
 }
 
-.MineSweeper__time {
+/*.MineSweeper__time {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -87,55 +86,55 @@
     text-indent: -9999px;
     overflow: hidden;
     display: block;
-    height: 100%; }
+    height: 100%; }*/
 
 .Cell__number0 {
     color: #ddd;
-    height: 4em;
-    width: 4em;}
+    height: 3em;
+    width: 3em;}
 
 .Cell__number1 {
     color: blue;
-    height: 4em;
-    width: 4em ;}
+    height: 3em;
+    width: 3em ;}
 
 .Cell__number2 {
     color: green;
-    height: 4em;
-    width: 4em}
+    height: 3em;
+    width: 3em}
 
 .Cell__number3 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: red; }
 
 .Cell__number4 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: #2b4b65; }
 
 .Cell__number5 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: #4f2702; }
 
 .Cell__number6 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: #0b615e; }
 
 .Cell__number7 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: black; }
 
 .Cell__number8 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: #666; }
 
 .Cell__number-1 {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     color: black;
     background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}

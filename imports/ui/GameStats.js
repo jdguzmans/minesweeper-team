@@ -4,7 +4,19 @@ class GameStats extends Component {
   renderPlayerScores () {
     return this.props.players.map(player => {
       return (
-        <h3>- {player.username}: {player.score}: {player.lost ? 'Died' : 'Still alive'}</h3>
+        <div className='row'>
+          <div className='col-sm-offset-1 col-sm-10'>
+            <div className='col-sm-4'>
+              <p style={{color: player.color}}>{player.username} </p>
+            </div>
+            <div className='col-sm-4'>
+              <p> {player.score}pts </p>
+            </div>
+            <div className='col-sm-4'>
+              {player.lost ? <p style={{color: 'red'}}>Dead</p> : <p style={{color: 'green'}}>Alive</p>}
+            </div>
+          </div>
+        </div>
       )
     })
   }

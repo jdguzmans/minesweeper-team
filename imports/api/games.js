@@ -37,8 +37,8 @@ Meteor.methods({
   'games.newGame' () {
     if (!this.userId) throw new Meteor.Error('not-authorized')
 
-    let gameMap = Logic.createGameMap(7, 8)
-    Games.insert({
+    let gameMap = Logic.createGameMap(11, 12)
+    return Games.insert({
       gameMap: gameMap,
       createdAt: new Date(),
       players: [ { username: Meteor.user().username, color: '#FF8080', lost: false, score: 0 } ],
@@ -46,6 +46,9 @@ Meteor.methods({
       score: 0,
       chat: [],
       finished: false
+    }, (err, res) => {
+      if (err) throw new Meteor.Error('ERROR')
+      return res
     })
   },
 
@@ -58,6 +61,13 @@ Meteor.methods({
     Games.update({_id: gameId},
       { $pull: { invites: Meteor.user().username },
         $addToSet: { players: { username: Meteor.user().username, color: color, lost: false, score: 0 } } }
+    )
+  },
+
+  'games.declineInvite' (gameId) {
+    if (!this.userId) throw new Meteor.Error('not-authorized')
+    Games.update({_id: gameId},
+      { $pull: { invites: Meteor.user().username } }
     )
   },
 

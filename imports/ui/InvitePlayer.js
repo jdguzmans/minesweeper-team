@@ -14,6 +14,9 @@ class InvitePlayer extends Component {
   handleSubmit (e) {
     e.preventDefault()
     this.props.invitePlayer(this.props.gameId, this.state.invitedPlayer)
+    this.setState({
+      invitedPlayer: ''
+    })
   }
 
   handleInputChange (e) {
@@ -24,19 +27,19 @@ class InvitePlayer extends Component {
   render () {
     return (
 
-      <div className =' mainContainer containers2'> 
-      <form className='form-horizontal' onSubmit={this.handleSubmit}>
-        <div className='form-group'>
-          <label className='control-label col-sm-2'>Invite a Player</label>
-          <div className='col-sm-8'>
-            <input name='invitedPlayer' type='text' className='form-control' value={this.state.invitedPlayer} onChange={this.handleInputChange} placeholder='Enter username' />
+      <div className=' mainContainer containers2'>
+        <form className='form-horizontal' onSubmit={this.handleSubmit}>
+          <div className='form-group'>
+            <label className='control-label col-sm-2'>Invite</label>
+            <div className='col-sm-8'>
+              <input name='invitedPlayer' type='text' className='form-control' value={this.state.invitedPlayer} onChange={this.handleInputChange} placeholder='Enter username' />
+            </div>
+            <div className='col-sm-2'>
+              <button type='submit' className='btn btn-default'>Invite</button>
+            </div>
           </div>
-          <div className='col-sm-2'>
-            <button type='submit' className='btn btn-default'>Invite</button>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     )
   }
 }

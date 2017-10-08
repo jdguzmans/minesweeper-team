@@ -7,6 +7,7 @@ import Game from './Game'
 import AccountsUIWrapper from './AccountsUIWrapper'
 import GamesSettings from './GamesSettings'
 import Instructions from './Instructions'
+import AllScores from './AllScores'
 
 class App extends Component {
   constructor (props) {
@@ -16,7 +17,12 @@ class App extends Component {
   }
 
   newGame () {
-    Meteor.call('games.newGame')
+    Meteor.call('games.newGame', (err, _id) => {
+      if (err) console.log(err)
+      this.props.games.forEach(game => {
+        if (game._id === _id) this.setState({game: game})
+      })
+    })
   }
 
   invitePlayer (gameId, username) {
@@ -25,6 +31,10 @@ class App extends Component {
 
   acceptInvite (gameId) {
     Meteor.call('games.acceptInvite', gameId)
+  }
+
+  declineInvite (gameId) {
+    Meteor.call('games.declineInvite', gameId)
   }
 
   selectGame (gameId) {
@@ -57,22 +67,24 @@ class App extends Component {
 
   render () {
     return (
-      <div className='highScoresContainer'>
-        <div className='col-sm-3'>
-          <AccountsUIWrapper />
-          {this.props.user &&
+      <div>
+        <div className='row'>
+          <div className='center-text col-sm-offset-1 col-sm-3'>
+            <AccountsUIWrapper />
+            {this.props.user &&
             <GamesSettings
               newGame={this.newGame.bind(this)}
               invites={this.props.invites}
               acceptInvite={this.acceptInvite.bind(this)}
+              declineInvite={this.acceptInvite.bind(this)}
               games={this.props.games}
               finishedGames={this.props.finishedGames}
               selectGame={this.selectGame.bind(this)}
             />
           }
-        </div>
-        <div className='col-sm-6'>
-          {this.state.game &&
+          </div>
+          <div className='col-sm-7'>
+            {this.state.game &&
             <Game
               game={this.state.game}
               invitePlayer={this.invitePlayer.bind(this)}
@@ -80,18 +92,17 @@ class App extends Component {
               scores={this.state.game.scores}
               selectSquare={this.selectSquare.bind(this)} />
             }
-          {!this.state.game && <Instructions /> }
+            <Instructions />
+          </div>
         </div>
-
-        <div className='col-sm-3'>
-          <h1>Highscores</h1>
+        <div className='row'>
+          <div className='center-text col-sm-offset-1 col-sm-10'>
+            <AllScores scores={this.props.scores} />
+          </div>
         </div>
       </div>
     )
   }
-}
-
-App.propTypes = {
 }
 
 export default createContainer(() => {

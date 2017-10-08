@@ -33,8 +33,11 @@ class Game extends Component {
             </div>
           </div>
         }
-        <div className='row'>
+        <div className='row center-text'>
           <h1>Game {this.props.game.finished && 'Over'}</h1>
+        </div>
+        <div className='row center-text'>
+          <h2>Id: {this.props.game._id}</h2>
         </div>
         <div className='row center-text'>
           <Timer finished={this.props.game.finished} finishedAt={this.props.game.finishedAt} date={this.props.game.createdAt} />

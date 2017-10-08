@@ -13,13 +13,13 @@ class GameMessage extends Component {
     return (
       <div className='row'>
         <div className='col-sm-3'>
-          <h5 style={{color: this.props.message.color}}>{this.props.message.username}</h5>
+          <h5 style={{color: this.props.message.color}} className='font'>{this.props.message.username}</h5>
         </div>
         <div className='col-sm-6'>
-          <h6>{this.props.message.text}</h6>
+          <h6 className='font'>{this.props.message.text}</h6>
         </div>
         <div className='col-sm-3'>
-          <h5>{this.shownDate}</h5>
+          <h5 className='font'>{this.shownDate}</h5>
         </div>
       </div>
     )

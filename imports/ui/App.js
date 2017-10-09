@@ -98,7 +98,7 @@ class App extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='center-text col-sm-offset-1 col-sm-10'>
+          <div className='center-text col-sm-offset-1 col-sm-10 secondContainer'>
             <AllScores scores={this.props.scores} />
           </div>
         </div>

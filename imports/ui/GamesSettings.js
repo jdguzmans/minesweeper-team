@@ -10,7 +10,7 @@ class GamesSettings extends Component {
           <button
             key={game._id}
             onClick={() => this.props.selectGame(game._id)}
-            className='btn btn-primary'>
+            className='btn btn-info'>
             {game._id}
           </button>
         </div>
@@ -41,7 +41,7 @@ class GamesSettings extends Component {
           <button
             key={invite._id + 'a'}
             onClick={() => this.props.acceptInvite(invite._id)}
-            className='btn btn-info'>
+            className='btn btn-default'>
             ✓
           </button>
           <button

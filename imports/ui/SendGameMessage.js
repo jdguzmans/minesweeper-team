@@ -14,6 +14,9 @@ class SendGameMessage extends Component {
   handleSubmit (e) {
     e.preventDefault()
     this.props.sendMessage(this.state.message)
+    this.setState({
+      message: ''
+    })
   }
 
   handleInputChange (e) {
@@ -28,7 +31,7 @@ class SendGameMessage extends Component {
           <div className='form-group'>
             <label className='control-label col-sm-2'>Send a message</label>
             <div className='col-sm-8'>
-              <input name='message' type='text' className='form-control' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
+              <textarea name='message' type='text' className='form-control' rows='2' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
             </div>
             <div className='col-sm-2'>
               <button type='submit' className='btn btn-default'>Send</button>

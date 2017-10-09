@@ -14,11 +14,11 @@ class GameChat extends Component {
       <div className='row'>
         <h3 className='font'>GameChat</h3>
         <div>
-          <div className='col-sm-offset-1 col-sm-10'>
+          <div className='col-sm-offset-2 col-sm-8'>
             <SendGameMessage sendMessage={this.props.sendMessage} />
           </div>
         </div>
-        <div className='row'>
+        <div className='row col-sm-offset-1 col-sm-10'>
           {this.renderMessages()}
         </div>
       </div>

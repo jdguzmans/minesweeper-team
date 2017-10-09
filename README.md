@@ -21,9 +21,9 @@ meteor
 
 ## Authors
 
-* **Juan David Guzmán Sarmiento** - [jdguzmans](https://jdguzmans.github.io/)
-* **Andrés Sandoval Cordero** - [jdguzmans](https://asandovaluniandes.github.io/)
+* [Juan David Guzmán Sarmiento](https://jdguzmans.github.io/)
+* [Andrés Sandoval Cordero](https://asandovaluniandes.github.io/)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

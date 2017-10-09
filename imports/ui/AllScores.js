@@ -3,6 +3,9 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
 class AllScores extends Component {
+ 
+  //Laura: Sería interesante que los datos estuvieran organizados de alguna forma, por puntaje o por velocidad, así se podrían ver los mejores jugadores 
+  
   render () {
     const columns = [{
       Header: 'Username',

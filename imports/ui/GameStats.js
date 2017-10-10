@@ -32,3 +32,4 @@ class GameStats extends Component {
 }
 
 export default GameStats
+//Aprovechar css en vez de poner tanto inline style

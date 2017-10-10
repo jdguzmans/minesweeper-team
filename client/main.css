@@ -138,3 +138,5 @@ body{
     width: 3em;
     color: black;
     background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}
+
+/* Laura: Tal vez podrían agrupar todos los estilos comunes, como height y width, para no tener código duplicado */

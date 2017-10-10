@@ -137,3 +137,6 @@ export default createContainer(() => {
     scores: scores
   }
 }, App)
+
+//Laura: Me parece muy bueno que hayan dividido todo en clases más pequeñas porque se entiende mejor que es lo que hace cada partecita
+// y si hay que hacer cambios, se sabe bien donde hay que ir a buscar.

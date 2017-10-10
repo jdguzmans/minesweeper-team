@@ -2,7 +2,19 @@ import { Mongo } from 'meteor/mongo'
 import { Meteor } from 'meteor/meteor'
 // import { check } from 'meteor/check'
 import Logic from './../logic'
+import SimpleSchema from "simpl-schema";
 
+const usersSchema = new SimpleSchema({
+  param1:Date,
+  param2:Number,
+  //etc
+
+});
+const gamesSchema = new SimpleSchema({
+  param: String,
+  users: [userSchema]
+  //etc 
+});
 const Users = Meteor.users
 
 export const Games = new Mongo.Collection('games')
@@ -122,3 +134,6 @@ Meteor.methods({
         )
   }
 })
+
+//Les recomiendo el uso de simpleschema para definir una estructura específica para cada una de sus colecciones. Esto ayuda a tener claro
+//la estructura de la base de datos y la relacion entre documentos

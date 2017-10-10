@@ -74,4 +74,12 @@ class Game extends Component {
   }
 }
 
+//Laura: Es muy interesante que varios jugadores puedan estar en el mismo juego y también que haya un color para cada jugador
+//Sería chevere que se pudieran poner turnos porque podría pasar que un jugador seleccione todos los cuadrados y los otros jugadores
+//ya no puedan jugar.
+//En general, me gustó mucho la página porque el diseño es bueno, los colores son adecuados y las funcionalidades están bien definidas.
+//Los únicos cambios que les recomiendo son los de cambiar lo que dice el botón de los juegos actuales y terminados, además, sería bueno
+// poner las instrucciones en la parte superior, porque abajo se pierden un poco y tal vez, si en el juego hubo dos personas, poner el color
+//del botón, del color de quien tuvo más puntos.
+
 export default Game

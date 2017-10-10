@@ -138,3 +138,5 @@ body{
     width: 3em;
     color: black;
     background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}
+
+/* Tienen mucho codigo duplicado en el css que se pudiera solucionar con el uso de más clases */ 

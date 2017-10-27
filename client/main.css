@@ -1,140 +1,175 @@
 
-body{
+body {
     background-color: #f6f0e8;
+    padding: 0.5em;
 }
 
-.font{
+h1, h2, h3, h4, h5, h6, p, .scoresContainer, .darkContainer, .loginContainer, .gameContainer, .center-text {
     font-family: 'Autour One';
 }
 
-.mainContainer{
-    font-family: 'Autour One';
-    background-color: #e9e9e9;
-    padding-top: 0.7em;
-    padding-bottom: 0.7em;
-    border-radius: 10px;
-    display: block;
-    text-align: center;
-    margin-top: 0.7em;
-    margin-bottom: 0.7em;
-    border-style: solid;
-    border-color: #d3d3d3;
+#login-sign-in-link, #login-name-link, #login-dropdown-list > a, #signup-link, #back-to-login-link {
+  color: #007bff;
 }
 
-.secondContainer {
-      padding-top: 0.7em;
-      padding-bottom: 0.7em;
-      margin-top: 0.7em;
-      margin-bottom: 0.7em;
+#login-sign-in-link:hover, #login-name-link:hover, #login-dropdown-list > a:hover, #signup-link:hover, #back-to-login-link:hover {
+  color: #3399f3;
+  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
 }
 
-.loginContainer{
-    font-family: 'Autour One';
-    background-color: #e9e9e9;
-    padding-bottom: 0.7em;
-    padding-top: 0.7em;
-    border-radius: 10px;
-    display: block;
-    text-align: center;
-    margin-top: 0.7em;
-    margin-bottom: 0.7em;
-    border-style: solid;
-    border-color: #d3d3d3;
-}
-
-.login-button {
+#login-buttons-open-change-password {
   background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
-  background-repeat: no-repeat;
-  filter: none;
-  border: 1px solid #345578;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
-  color: #ffffff;
-  background-color: #446e9b;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  white-space: nowrap;
+    background-repeat: no-repeat;
+    filter: none;
+    border: 1px solid #345578;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    color: #ffffff;
+    background-color: #446e9b;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
     padding: 8px 12px;
     font-size: 14px;
     line-height: 1.42857143;
     border-radius: 4px;
     user-select: none;
     overflow: visible;
+  box-sizing: border-box;
 }
 
-.gameContainer{
-   background-color: #faf7f3;
-   border-style: solid;
-   border-color: #d3d3d3;
-   margin-top: 0.7em;
-   margin-bottom: 0.7em;
-   padding-top: 0.7em;
-   padding-bottom: 0.7em;
-   border-radius: 10px;
+#login-buttons-logout {
+  background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+    background-repeat: no-repeat;
+    filter: none;
+    border: 1px solid #345578;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    color: #ffffff;
+    background-color: #446e9b;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+    overflow: visible;
+  box-sizing: border-box;
 }
 
-.center-text{
+#login-buttons-password {
+  background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+    background-repeat: no-repeat;
+    filter: none;
+    border: 1px solid #345578;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    color: #ffffff;
+    background-color: #446e9b;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+    overflow: visible;
+  box-sizing: border-box;
+}
+
+.center-text {
     display: block;
     margin: auto;
     text-align: center;
 }
 
-.square {
-  height: 3em;
-  width: 3em
+.darkContainer, .loginContainer {
+    background-color: #e9e9e9;
+    padding: 0.5em;
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+    border-radius: 0.8em;
+    display: block;
+    text-align: center;
+    border-style: solid;
+    border-color: #d3d3d3;
 }
 
-.Cell__number0 {
+.gameContainer {
+   background-color: #faf7f3;
+   border-style: solid;
+   border-color: #d3d3d3;
+   padding: 0.5em;
+   margin-top: 0.7em;
+   margin-bottom: 0.7em;
+   border-radius: 0.8em;
+}
+
+.normalContainer {
+    margin-top:0.2em;
+    padding: 0.2em;
+}
+
+.square, .cellNumber0, .cellNumber1, .cellNumber2, .cellNumber3, .cellNumber4, .cellNumber5, .cellNumber6, .cellNumber7, .cellNumber8, .cellNumber-1 {
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.cellNumber0 {
     color: #ddd;
-    height: 3em;
-    width: 3em;}
+  }
 
-.Cell__number1 {
+.cellNumber1 {
     color: blue;
-    height: 3em;
-    width: 3em ;}
+  }
 
-.Cell__number2 {
+.cellNumber2 {
     color: green;
-    height: 3em;
-    width: 3em}
+  }
 
-.Cell__number3 {
-    height: 3em;
-    width: 3em;
-    color: red; }
+.cellNumber3 {
+    color: red;
+  }
 
-.Cell__number4 {
-    height: 3em;
-    width: 3em;
-    color: #2b4b65; }
+.cellNumber4 {
+    color: #2b4b65;
+  }
 
-.Cell__number5 {
-    height: 3em;
-    width: 3em;
-    color: #4f2702; }
+.cellNumber5 {
+    color: #4f2702;
+  }
 
-.Cell__number6 {
-    height: 3em;
-    width: 3em;
-    color: #0b615e; }
+.cellNumber6 {
+    color: #0b615e;
+  }
 
-.Cell__number7 {
-    height: 3em;
-    width: 3em;
-    color: black; }
-
-.Cell__number8 {
-    height: 3em;
-    width: 3em;
-    color: #666; }
-
-.Cell__number-1 {
-    height: 3em;
-    width: 3em;
+.cellNumber7 {
     color: black;
-    background: url("../assets/images/icn_bomb_01.png") no-repeat center center;}
+  }
+
+.cellNumber8 {
+    color: #666;
+  }
+
+.cellNumber-1 {
+    color: black;
+    background: url("../assets/images/icn_bomb_01.png") no-repeat center center;
+  }

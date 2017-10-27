@@ -4,7 +4,7 @@ class Square extends Component {
   render () {
     return (
       <button
-        className={this.props.square.isSelected ? 'Cell__number' + this.props.square.value : 'square'}
+        className={this.props.square.isSelected ? 'cellNumber' + this.props.square.value : 'square'}
         disabled={this.props.square.isSelected}
         onClick={this.props.selectSquare}
         style={{backgroundColor: this.props.square.color}}

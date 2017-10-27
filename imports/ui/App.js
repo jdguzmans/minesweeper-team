@@ -69,10 +69,10 @@ class App extends Component {
     return (
       <div>
         <div className='row'>
-          <div className='col-sm-offset-1 col-sm-3'>
+          <div className='col-sm-3'>
             <AccountsUIWrapper />
             {this.props.user &&
-            <div className='center-text mainContainer'>
+            <div className='center-text darkContainer'>
               <GamesSettings
                 newGame={this.newGame.bind(this)}
                 invites={this.props.invites}
@@ -85,7 +85,7 @@ class App extends Component {
             </div>
           }
           </div>
-          <div className='col-sm-7'>
+          <div className='col-sm-9'>
             {this.state.game &&
             <Game
               game={this.state.game}
@@ -119,12 +119,12 @@ export default createContainer(() => {
   let invites = []
   all.forEach(game => {
     game.chat = game.chat.sort((a, b) => {
-      return (new Date(b.date).getTime()) - (new Date(a.date).getTime())
+      return b.date.getTime() - a.date.getTime()
     })
     if (game.players.filter(player => { return player.username === username }).length === 1) {
-      if (game.finished) finishedGames.push(game)
+      if (game.finishedAt) finishedGames.push(game)
       else games.push(game)
-    } else if (game.invites.includes(username)) invites.push(game)
+    } else if (game.invites.includes(username)) invites.push({gameId: game._id, gamePrettyId: game.prettyId})
   })
 
   let scores = Scores.find({}).fetch()

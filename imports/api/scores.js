@@ -28,8 +28,8 @@ Meteor.methods({
       })
 
       playerDB.scoreSum = scoreSum
-      playerDB.scoreAverage = parseInt(1000 * scoreSum / games) / 1000
-      playerDB.speed = parseInt(1000 * 60 * scoreSum / timeSum) / 1000
+      playerDB.scoreAverage = parseInt(100 * scoreSum / games) / 100
+      playerDB.speed = parseInt(100 * 60 * scoreSum / timeSum) / 100
       Scores.upsert({username: playerDB.username}, playerDB)
     })
   }

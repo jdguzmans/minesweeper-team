@@ -10,7 +10,7 @@ class GameList extends Component {
 
   render () {
     return (
-      <div className = 'mainContainer'>
+      <div className='darkContainer'>
         <h3>GameList</h3>
         <div>
           {this.renderGames()}

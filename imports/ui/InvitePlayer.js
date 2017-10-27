@@ -29,7 +29,7 @@ class InvitePlayer extends Component {
 
       <div>
         <form className='form-horizontal' onSubmit={this.handleSubmit}>
-          <div className='form-group'>
+          <div className='form-row'>
             <label className='control-label col-sm-2'>Invite</label>
             <div className='col-sm-8'>
               <input name='invitedPlayer' type='text' className='form-control' value={this.state.invitedPlayer} onChange={this.handleInputChange} placeholder='Enter username' />

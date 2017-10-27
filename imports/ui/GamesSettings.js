@@ -3,15 +3,37 @@
 import React, { Component } from 'react'
 
 class GamesSettings extends Component {
-  renderGames () {
+  renderGameInvites () {
+    return this.props.invites.map(invite => {
+      return (
+        <div className='normalContainer'>
+          {invite.gamePrettyId}
+          <button
+            key={invite.gameId + 'a'}
+            onClick={() => this.props.acceptInvite(invite.gameId)}
+            className='btn btn-default'>
+            ✓
+          </button>
+          <button
+            key={invite.gameId + 'd'}
+            onClick={() => this.props.declineInvite(invite.gameId)}
+            className='btn btn-danger'>
+            X
+          </button>
+        </div>
+      )
+    })
+  }
+
+  renderCurrentGames () {
     return this.props.games.map(game => {
       return (
-        <div className='row'>
+        <div className='normalContainer'>
           <button
             key={game._id}
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-info'>
-            {game._id}
+            {game.prettyId}
           </button>
         </div>
       )
@@ -21,34 +43,12 @@ class GamesSettings extends Component {
   renderFinishedGames () {
     return this.props.finishedGames.map(game => {
       return (
-        <div className='row'>
+        <div className='normalContainer'>
           <button
             key={game._id}
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-warning'>
-            {game._id}
-          </button>
-        </div>
-      )
-    })
-  }
-
-  renderGameInvites () {
-    return this.props.invites.map(invite => {
-      return (
-        <div className='row'>
-          {invite._id}
-          <button
-            key={invite._id + 'a'}
-            onClick={() => this.props.acceptInvite(invite._id)}
-            className='btn btn-default'>
-            ✓
-          </button>
-          <button
-            key={invite._id + 'd'}
-            onClick={() => this.props.declineInvite(invite._id)}
-            className='btn btn-danger'>
-            X
+            {game.prettyId}
           </button>
         </div>
       )
@@ -58,7 +58,7 @@ class GamesSettings extends Component {
   render () {
     return (
       <div>
-        <div>
+        <div className='normalContainer'>
           <h2 className='font'>New Game</h2>
           <button
             onClick={this.props.newGame}
@@ -66,16 +66,16 @@ class GamesSettings extends Component {
             Create
           </button>
         </div>
-        <div>
-          <h2 className='font'>Game Invites</h2>
+        <div className='normalContainer'>
+          <h2>Game Invites</h2>
           {this.renderGameInvites()}
         </div>
-        <div>
-          <h2 className='font'>Current Games</h2>
-          {this.renderGames()}
+        <div className='normalContainer'>
+          <h2>Current Games</h2>
+          {this.renderCurrentGames()}
         </div>
-        <div>
-          <h2 className='font'>Finished Games</h2>
+        <div className='normalContainer'>
+          <h2>Finished Games</h2>
           {this.renderFinishedGames()}
         </div>
       </div>

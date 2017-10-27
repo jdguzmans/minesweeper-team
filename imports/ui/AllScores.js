@@ -37,9 +37,9 @@ class AllScores extends Component {
     }]
 
     return (
-      <div>
-        <h2 className='font'>Scores</h2>
-        <ReactTable data={this.props.scores} columns={columns} defaultPageSize={10} showPageSizeOptions={false} className='table table-striped table-hover font' />
+      <div className='scoresContainer'>
+        <h2>Scores</h2>
+        <ReactTable data={this.props.scores} columns={columns} defaultPageSize={10} showPageSizeOptions={false} className='table table-striped table-hover' />
       </div>
     )
   }

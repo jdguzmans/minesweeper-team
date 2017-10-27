@@ -26,9 +26,9 @@ class SendGameMessage extends Component {
 
   render () {
     return (
-      <div>
+      <div className='normalContainer'>
         <form className='form-horizontal' onSubmit={this.handleSubmit}>
-          <div className='form-group'>
+          <div className='form-row'>
             <label className='control-label col-sm-2'>Send a message</label>
             <div className='col-sm-8'>
               <textarea name='message' type='text' className='form-control' rows='2' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />

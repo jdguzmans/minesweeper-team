@@ -15,7 +15,7 @@ class GameMap extends Component {
   render () {
     return this.props.gameMap.map((row, i) => {
       return (
-        <div className='row' key={i}>
+        <div key={i}>
           {this.renderRow(row, i)}
         </div>
       )

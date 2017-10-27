@@ -24,6 +24,7 @@ if (Meteor.isServer) {
       if (!this.userId) throw new Meteor.Error('not-authorized')
       let user = Users.findOne({username: username})
       if (!user) throw new Meteor.Error('user not found')
+      else if (username === Meteor.user().username) throw new Meteor.Error('can not autoinvite')
       let game = Games.findOne({_id: gameId})
       if (game.players.length === 3) throw new Meteor.Error('player number limit of 3')
       Games.update({_id: gameId},
@@ -38,14 +39,17 @@ Meteor.methods({
     if (!this.userId) throw new Meteor.Error('not-authorized')
 
     let gameMap = Logic.createGameMap(11, 12)
+    let date = new Date()
     return Games.insert({
+      prettyId: parseInt(date.getFullYear() - 2000) + '/' + (date.getMonth() + 1) + '/' + date.getDate() + '-' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
       gameMap: gameMap,
-      createdAt: new Date(),
+      createdAt: date,
+      startedAt: null,
+      finishedAt: null,
       players: [ { username: Meteor.user().username, color: '#FF8080', lost: false, score: 0 } ],
       invites: [],
       score: 0,
-      chat: [],
-      finished: false
+      chat: []
     }, (err, res) => {
       if (err) throw new Meteor.Error('ERROR')
       return res
@@ -72,6 +76,8 @@ Meteor.methods({
   },
 
   'games.selectSquare' (i, j, game) {
+    if (!game.startedAt) game.startedAt = new Date()
+
     let username = Meteor.user().username
     let plays = true
     game.players.forEach(player => {
@@ -96,7 +102,6 @@ Meteor.methods({
         if (!player.lost) finished = false
       })
       if (finished) {
-        game.finished = true
         game.finishedAt = new Date()
         let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
         Meteor.call('scores.addScore', scores.total, game.players, time)
@@ -119,6 +124,6 @@ Meteor.methods({
           chat: {username: username, text: text, date: new Date(), color: color}
         }
       }
-        )
+    )
   }
 })

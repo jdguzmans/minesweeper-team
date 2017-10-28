@@ -6,7 +6,7 @@ class GamesSettings extends Component {
   renderGameInvites () {
     return this.props.invites.map(invite => {
       return (
-        <div className='normalContainer'>
+        <div className='normal-container'>
           {invite.gamePrettyId}
           <button
             key={invite.gameId + 'a'}
@@ -28,7 +28,7 @@ class GamesSettings extends Component {
   renderCurrentGames () {
     return this.props.games.map(game => {
       return (
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <button
             key={game._id}
             onClick={() => this.props.selectGame(game._id)}
@@ -43,7 +43,7 @@ class GamesSettings extends Component {
   renderFinishedGames () {
     return this.props.finishedGames.map(game => {
       return (
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <button
             key={game._id}
             onClick={() => this.props.selectGame(game._id)}
@@ -58,7 +58,7 @@ class GamesSettings extends Component {
   render () {
     return (
       <div>
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <h2 className='font'>New Game</h2>
           <button
             onClick={this.props.newGame}
@@ -66,15 +66,15 @@ class GamesSettings extends Component {
             Create
           </button>
         </div>
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <h2>Game Invites</h2>
           {this.renderGameInvites()}
         </div>
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <h2>Current Games</h2>
           {this.renderCurrentGames()}
         </div>
-        <div className='normalContainer'>
+        <div className='normal-container'>
           <h2>Finished Games</h2>
           {this.renderFinishedGames()}
         </div>

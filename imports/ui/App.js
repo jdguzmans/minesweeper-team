@@ -7,7 +7,7 @@ import { Games } from '../api/games.js'
 import { Scores } from '../api/scores.js'
 import Game from './Game'
 import AccountsUIWrapper from './AccountsUIWrapper'
-import GamesSettings from './GamesSettings'
+import Settings from './Settings'
 import Instructions from './Instructions'
 import AllScores from './AllScores'
 
@@ -35,18 +35,20 @@ class App extends Component {
 
   invitePlayer (gameId, username) {
     Meteor.call('games.invite', gameId, username, err => {
-      if (err) {
-        this.setState({errorMessage: err.message})
-      }
+      if (err) this.setState({errorMessage: err.message})
     })
   }
 
   acceptInvite (gameId) {
-    Meteor.call('games.acceptInvite', gameId)
+    Meteor.call('games.acceptInvite', gameId, err => {
+      if (err) this.setState({errorMessage: err.message})
+    })
   }
 
   declineInvite (gameId) {
-    Meteor.call('games.declineInvite', gameId)
+    Meteor.call('games.declineInvite', gameId, err => {
+      if (err) this.setState({errorMessage: err.message})
+    })
   }
 
   selectGame (gameId) {
@@ -60,7 +62,9 @@ class App extends Component {
 
   selectSquare (i, j) {
     if (!this.props.showingGame) {
-      Meteor.call('games.selectSquare', i, j, this.state.game)
+      Meteor.call('games.selectSquare', i, j, this.state.game, err => {
+        if (err) this.setState({errorMessage: err.message})
+      })
     }
   }
 
@@ -76,7 +80,9 @@ class App extends Component {
   }
 
   sendMessage (message) {
-    Meteor.call('games.sendMessage', this.state.game, message)
+    Meteor.call('games.sendMessage', this.state.game, message, err => {
+      if (err) this.setState({errorMessage: err.message})
+    })
   }
 
   closeErrorModal () {
@@ -85,13 +91,22 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='render-target'>
         <div className='row'>
+          <div className='col-sm-4'>
+            <div className='dark-container'>
+              <AccountsUIWrapper />
+            </div>
+          </div>
+        </div>
+        <div>
+          <Instructions />
+        </div>
+        <div className={this.props.user ? 'row' : ''} >
+          {this.props.user &&
           <div className='col-sm-3'>
-            <AccountsUIWrapper />
-            {this.props.user &&
-            <div className='center-text darkContainer'>
-              <GamesSettings
+            <div className='center-text dark-container'>
+              <Settings
                 newGame={this.newGame.bind(this)}
                 invites={this.props.invites}
                 acceptInvite={this.acceptInvite.bind(this)}
@@ -101,9 +116,9 @@ class App extends Component {
                 selectGame={this.selectGame.bind(this)}
             />
             </div>
-          }
           </div>
-          <div className='col-sm-9'>
+        }
+          <div className={this.props.user ? 'col-sm-9' : ''}>
             {(this.props.showingGame || this.state.game) &&
               <Game
                 showingGame={this.props.showingGame}
@@ -113,18 +128,14 @@ class App extends Component {
                 scores={this.state.game ? this.state.game.scores : this.props.showingGame.scores}
                 selectSquare={this.selectSquare.bind(this)} />
             }
-            <Instructions />
           </div>
         </div>
         <div className='row'>
-          <div className='center-text col-sm-offset-1 col-sm-10 secondContainer'>
+          <div className='container-fluid'>
             <AllScores scores={this.props.scores} />
           </div>
         </div>
-        <ErrorModal
-          message={this.state.errorMessage}
-          onClose={this.closeErrorModal.bind(this)}
-        />
+        <ErrorModal message={this.state.errorMessage} onClose={this.closeErrorModal.bind(this)} />
       </div>
     )
   }

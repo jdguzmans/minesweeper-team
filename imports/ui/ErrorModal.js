@@ -6,36 +6,23 @@ class ErrorModal extends Component {
       return null
     }
 
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 50
-    }
-
-    const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30
-    }
-
     return (
-      <div className='backdrop' style={backdropStyle}>
-        <div style={modalStyle}>
-          {this.props.message}
+      <div className='error-modal-container'>
+        <div className='error-modal center-text'>
+          <div>
+            <h3>Error</h3>
+          </div>
+          <div>
+            <p>{this.props.message}</p>
+          </div>
           <div className='footer'>
-            <button onClick={this.props.onClose}>
-            Got it
+            <button className='btn btn-default' onClick={this.props.onClose}>
+              Got it
             </button>
           </div>
         </div>
       </div>
+
     )
   }
 }

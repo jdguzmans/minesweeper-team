@@ -1,11 +1,11 @@
 /* global */
 
 import React, { Component } from 'react'
-import GameMap from './GameMap'
-import Timer from './Timer'
-import GameStats from './GameStats'
-import InvitePlayer from './InvitePlayer'
-import GameChat from './GameChat'
+import Map from './Game/Map'
+import Timer from './Game/Timer'
+import Stats from './Game/Stats'
+import InvitePlayer from './Game/InvitePlayer'
+import Chat from './Game/Chat'
 
 class Game extends Component {
   renderGameInvites () {
@@ -32,7 +32,7 @@ class Game extends Component {
     return (
       <div>
         {!this.props.showingGame && !this.props.game.finishedAt &&
-          <div className='center-text darkContainer'>
+          <div className='center-text dark-container'>
             <h1>Players</h1>
             <div className='row'>
               <div className='col-sm-6 center-text'>
@@ -54,7 +54,7 @@ class Game extends Component {
           </div>
         }
 
-        <div className='gameContainer'>
+        <div className='game-container'>
           <div className='row'>
             <div className='center-text'>
               <h1>{this.props.showingGame && 'Random Example '} Game {this.props.game.finishedAt && 'Over'}</h1>
@@ -70,13 +70,13 @@ class Game extends Component {
               <Timer createdAt={this.props.game.createdAt} startedAt={this.props.game.startedAt} finishedAt={this.props.game.finishedAt} />
             </div>
           </div>
-          <GameStats score={this.props.game.score} players={this.props.game.players} />
+          <Stats score={this.props.game.score} players={this.props.game.players} />
           <div className='center-block center-text'>
-            <GameMap showingGame={this.props.showingGame} gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
+            <Map showingGame={this.props.showingGame} gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
           </div>
         </div>
-        <div className='darkContainer'>
-          <GameChat showingGame={this.props.showingGame} chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
+        <div className='dark-container'>
+          <Chat showingGame={this.props.showingGame} chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
         </div>
       </div>
     )

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
-class AllScores extends Component {
+class Scores extends Component {
   render () {
     const columns = [{
       Header: 'Username',
@@ -37,12 +37,14 @@ class AllScores extends Component {
     }]
 
     return (
-      <div className='scoresContainer'>
-        <h2>Scores</h2>
+      <div className='white-container center-text'>
+        <div className='normal-container'>
+          <h2>Scores</h2>
+        </div>
         <ReactTable data={this.props.scores} columns={columns} defaultPageSize={10} showPageSizeOptions={false} className='table table-striped table-hover' />
       </div>
     )
   }
 }
 
-export default AllScores
+export default Scores

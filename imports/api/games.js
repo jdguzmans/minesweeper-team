@@ -11,12 +11,21 @@ if (Meteor.isServer) {
   // this code only runs on the server
   Meteor.publish('games', function gamesPublication () {
     let username = Meteor.user() ? Meteor.user().username : undefined
-    return Games.find({
-      $or: [
-        { 'players.username': { $in: [username] } },
-        { invites: { $in: [username] } }
-      ]
-    })
+    if (username) {
+      return Games.find({
+        $or: [
+          { 'players.username': { $in: [username] } },
+          { invites: { $in: [username] } }
+        ]
+      })
+    } else {
+      return Games.find({
+        $and: [
+          { 'startedAt': {$exists: true} },
+          { 'finishedAt': null }
+        ]
+      }, {limit: 1})
+    }
   })
 
   Meteor.methods({
@@ -41,7 +50,7 @@ Meteor.methods({
     let gameMap = Logic.createGameMap(11, 12)
     let date = new Date()
     let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    let month = date.getMont() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
+    let month = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
     let year = parseInt(date.getFullYear() - 2000)
     let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
     let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()

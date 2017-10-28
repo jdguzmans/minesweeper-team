@@ -13,6 +13,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      game: null
     }
   }
 
@@ -47,7 +48,9 @@ class App extends Component {
   }
 
   selectSquare (i, j) {
-    Meteor.call('games.selectSquare', i, j, this.state.game)
+    if (!this.props.showingGame) {
+      Meteor.call('games.selectSquare', i, j, this.state.game)
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -86,13 +89,14 @@ class App extends Component {
           }
           </div>
           <div className='col-sm-9'>
-            {this.state.game &&
-            <Game
-              game={this.state.game}
-              invitePlayer={this.invitePlayer.bind(this)}
-              sendMessage={this.sendMessage.bind(this)}
-              scores={this.state.game.scores}
-              selectSquare={this.selectSquare.bind(this)} />
+            {(this.props.showingGame || this.state.game) &&
+              <Game
+                showingGame={this.props.showingGame}
+                game={this.state.game ? this.state.game : this.props.showingGame}
+                invitePlayer={this.invitePlayer.bind(this)}
+                sendMessage={this.sendMessage.bind(this)}
+                scores={this.state.game ? this.state.game.scores : this.props.showingGame.scores}
+                selectSquare={this.selectSquare.bind(this)} />
             }
             <Instructions />
           </div>
@@ -111,21 +115,25 @@ export default createContainer(() => {
   Meteor.subscribe('games')
   Meteor.subscribe('scores')
 
-  let username = Meteor.user() ? Meteor.user().username : undefined
-  let all = Games.find({}).fetch()
-
   let games = []
   let finishedGames = []
   let invites = []
-  all.forEach(game => {
-    game.chat = game.chat.sort((a, b) => {
-      return b.date.getTime() - a.date.getTime()
+  let showingGame = null
+  let username = Meteor.user() ? Meteor.user().username : undefined
+  if (username) {
+    let all = Games.find({}).fetch()
+    all.forEach(game => {
+      game.chat = game.chat.sort((a, b) => {
+        return b.date.getTime() - a.date.getTime()
+      })
+      if (game.players.filter(player => { return player.username === username }).length === 1) {
+        if (game.finishedAt) finishedGames.push(game)
+        else games.push(game)
+      } else if (game.invites.includes(username)) invites.push({gameId: game._id, gamePrettyId: game.prettyId})
     })
-    if (game.players.filter(player => { return player.username === username }).length === 1) {
-      if (game.finishedAt) finishedGames.push(game)
-      else games.push(game)
-    } else if (game.invites.includes(username)) invites.push({gameId: game._id, gamePrettyId: game.prettyId})
-  })
+  } else {
+    showingGame = Games.find({}).fetch()[0]
+  }
 
   let scores = Scores.find({}).fetch()
 
@@ -134,6 +142,7 @@ export default createContainer(() => {
     games: games,
     finishedGames: finishedGames,
     invites: invites,
-    scores: scores
+    scores: scores,
+    showingGame: showingGame
   }
 }, App)

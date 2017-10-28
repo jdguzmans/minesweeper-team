@@ -17,9 +17,12 @@ class GameChat extends Component {
     return (
       <div className='container-fluid'>
         <h3 className='font'>GameChat</h3>
-        <SendGameMessage sendMessage={this.props.sendMessage} />
+        {!this.props.showingGame &&
+          <SendGameMessage sendMessage={this.props.sendMessage} />
+        }
         <div className='normalContainer'>
-          {this.renderMessages()}
+          {this.props.chat.length === 0 ? 'There are not messages, yet.' : this.renderMessages()
+        }
         </div>
       </div>
     )

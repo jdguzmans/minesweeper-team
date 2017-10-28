@@ -4,12 +4,12 @@ class Square extends Component {
   render () {
     return (
       <button
-        className={this.props.square.isSelected ? 'cellNumber' + this.props.square.value : 'square'}
-        disabled={this.props.square.isSelected}
+        className={this.props.square.selectedBy ? 'cellNumber' + this.props.square.value : 'square'}
+        disabled={this.props.square.selectedBy}
         onClick={this.props.selectSquare}
         style={{backgroundColor: this.props.square.color}}
         >
-        {this.props.square.isSelected ? this.props.square.value : '?'}
+        {this.props.square.selectedBy ? this.props.square.value : '?'}
       </button>
     )
   }

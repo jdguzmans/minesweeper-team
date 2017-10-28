@@ -31,7 +31,7 @@ class Game extends Component {
   render () {
     return (
       <div>
-        {!this.props.game.finishedAt &&
+        {!this.props.showingGame && !this.props.game.finishedAt &&
           <div className='center-text darkContainer'>
             <h1>Players</h1>
             <div className='row'>
@@ -57,7 +57,7 @@ class Game extends Component {
         <div className='gameContainer'>
           <div className='row'>
             <div className='center-text'>
-              <h1>Game {this.props.game.finishedAt && 'Over'}</h1>
+              <h1>{this.props.showingGame && 'Random Example '} Game {this.props.game.finishedAt && 'Over'}</h1>
             </div>
           </div>
           <div className='row'>
@@ -72,11 +72,11 @@ class Game extends Component {
           </div>
           <GameStats score={this.props.game.score} players={this.props.game.players} />
           <div className='center-block center-text'>
-            <GameMap gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
+            <GameMap showingGame={this.props.showingGame} gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
           </div>
         </div>
         <div className='darkContainer'>
-          <GameChat chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
+          <GameChat showingGame={this.props.showingGame} chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
         </div>
       </div>
     )

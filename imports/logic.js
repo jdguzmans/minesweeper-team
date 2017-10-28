@@ -79,7 +79,7 @@ Logic.createGameMap = function (m, n) {
     return row.map(col => {
       return {
         value: col,
-        isSelected: false
+        selectedBy: null
       }
     })
   })
@@ -87,8 +87,7 @@ Logic.createGameMap = function (m, n) {
 }
 
 Logic.selectSquare = function (i, j, gameMap, username, color) {
-  if (!gameMap[i][j].isSelected) {
-    gameMap[i][j].isSelected = true
+  if (!gameMap[i][j].selectedBy) {
     gameMap[i][j].selectedBy = username
     gameMap[i][j].color = color
 
@@ -117,11 +116,11 @@ Logic.calculateScores = function (gameMap, username) {
 
   gameMap.forEach(row => {
     row.forEach(x => {
-      if (x.isSelected && x.value !== -1) {
+      if (x.selectedBy && x.value !== -1) {
         totalScore = totalScore + 1
         if (x.selectedBy === username) userScore = userScore + 1
       }
-      if (x.isSelected && x.value === -1 && x.selectedBy === username) lost = true
+      if (x.selectedBy && x.value === -1 && x.selectedBy === username) lost = true
     })
   })
 

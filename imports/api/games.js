@@ -40,8 +40,14 @@ Meteor.methods({
 
     let gameMap = Logic.createGameMap(11, 12)
     let date = new Date()
+    let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+    let month = date.getMont() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
+    let year = parseInt(date.getFullYear() - 2000)
+    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+    let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+    let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
     return Games.insert({
-      prettyId: parseInt(date.getFullYear() - 2000) + '/' + (date.getMonth() + 1) + '/' + date.getDate() + '-' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
+      prettyId: day + '/' + month + '/' + year + '-' + hours + ':' + minutes + ':' + seconds,
       gameMap: gameMap,
       createdAt: date,
       startedAt: null,

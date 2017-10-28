@@ -1,3 +1,5 @@
+/* global alert */
+
 import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
@@ -9,25 +11,34 @@ import GamesSettings from './GamesSettings'
 import Instructions from './Instructions'
 import AllScores from './AllScores'
 
+import ErrorModal from './ErrorModal'
+
 class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      errorMessage: null,
       game: null
     }
   }
 
   newGame () {
     Meteor.call('games.newGame', (err, _id) => {
-      if (err) console.log(err)
-      this.props.games.forEach(game => {
-        if (game._id === _id) this.setState({game: game})
-      })
+      if (err) alert(err.message)
+      else {
+        this.props.games.forEach(game => {
+          if (game._id === _id) this.setState({game: game})
+        })
+      }
     })
   }
 
   invitePlayer (gameId, username) {
-    Meteor.call('games.invite', gameId, username)
+    Meteor.call('games.invite', gameId, username, err => {
+      if (err) {
+        this.setState({errorMessage: err.message})
+      }
+    })
   }
 
   acceptInvite (gameId) {
@@ -68,6 +79,10 @@ class App extends Component {
     Meteor.call('games.sendMessage', this.state.game, message)
   }
 
+  closeErrorModal () {
+    this.setState({errorMessage: null})
+  }
+
   render () {
     return (
       <div>
@@ -106,6 +121,10 @@ class App extends Component {
             <AllScores scores={this.props.scores} />
           </div>
         </div>
+        <ErrorModal
+          message={this.state.errorMessage}
+          onClose={this.closeErrorModal.bind(this)}
+        />
       </div>
     )
   }

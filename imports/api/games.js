@@ -30,12 +30,12 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     'games.invite' (gameId, username) {
-      if (!this.userId) throw new Meteor.Error('not-authorized')
+      if (!this.userId) throw new Meteor.Error('You are not authorized')
       let user = Users.findOne({username: username})
-      if (!user) throw new Meteor.Error('user not found')
-      else if (username === Meteor.user().username) throw new Meteor.Error('can not autoinvite')
+      if (!user) throw new Meteor.Error('User not found')
+      else if (username === Meteor.user().username) throw new Meteor.Error('Can not autoinvite')
       let game = Games.findOne({_id: gameId})
-      if (game.players.length === 3) throw new Meteor.Error('player number limit of 3')
+      if (game.players.length === 3) throw new Meteor.Error('Player number limit is 3')
       Games.update({_id: gameId},
         {$addToSet: { invites: username }}
       )
@@ -45,7 +45,7 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   'games.newGame' () {
-    if (!this.userId) throw new Meteor.Error('not-authorized')
+    if (!this.userId) throw new Meteor.Error('You are not authorized')
 
     let gameMap = Logic.createGameMap(11, 12)
     let date = new Date()
@@ -72,7 +72,7 @@ Meteor.methods({
   },
 
   'games.acceptInvite' (gameId) {
-    if (!this.userId) throw new Meteor.Error('not-authorized')
+    if (!this.userId) throw new Meteor.Error('You are not authorized')
     let numberOfPlayers = Games.findOne({_id: gameId}).players.length
     let color
     if (numberOfPlayers === 1) color = '#8ae5ee'
@@ -84,7 +84,7 @@ Meteor.methods({
   },
 
   'games.declineInvite' (gameId) {
-    if (!this.userId) throw new Meteor.Error('not-authorized')
+    if (!this.userId) throw new Meteor.Error('You are not authorized')
     Games.update({_id: gameId},
       { $pull: { invites: Meteor.user().username } }
     )

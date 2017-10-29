@@ -32,8 +32,33 @@ class Game extends Component {
     return (
       <div>
         
-        <div className='col-lg-6 col-md-6'>
-        <div className='game-container '>
+
+        {!this.props.showingGame && !this.props.game.finishedAt &&
+          <div className='center-text dark-container'>
+            <h1>Players</h1>
+            <div className='row'>
+              <div className='col-sm-6 center-text'>
+                <h3>Invited Players:</h3>
+              </div>
+              <div className='col-sm-6 center-text'>
+                <h3>Playing:</h3>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='col-sm-6'>
+                {this.renderGameInvites()}
+              </div>
+              <div className='col-sm-6'>
+                {this.renderPlayers()}
+              </div>
+            </div>
+            <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
+          </div>
+        }
+
+        <div className='game-container'>
+       
+      
           <div className='row'>
             <div className='center-text '>
               <h2 className='primaryFont'>{this.props.showingGame && 'Random Example '} Game {this.props.game.finishedAt && 'Over'}</h2>
@@ -53,37 +78,16 @@ class Game extends Component {
           <div className='center-block center-text'>
             <Map showingGame={this.props.showingGame} gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
           </div>
-        </div>
-        <div className= 'col-lg-6 col-md-6'>
-           {!this.props.showingGame && !this.props.game.finishedAt &&
-          <div className='center-text dark-container '>
-            <h2 className='primaryFont'>Players</h2>
-            <div className='row'>
-              <div className='col-sm-6 center-text'>
-                <h4>Invited Players:</h4>
-              </div>
-              <div className='col-sm-6 center-text'>
-                <h4>Playing:</h4>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-sm-6'>
-                {this.renderGameInvites()}
-              </div>
-              <div className='col-sm-6'>
-                {this.renderPlayers()}
-              </div>
-            </div>
-            <InvitePlayer gameId={this.props.game._id} invitePlayer={this.props.invitePlayer} />
-          </div>
-        }
+
+         
+
         </div>
        
-        </div>
-
-        <div className='dark-container'>
+         <div className='dark-container'>
           <Chat showingGame={this.props.showingGame} chat={this.props.game.chat} sendMessage={this.props.sendMessage} />
         </div>
+
+        
 
       </div>
     )

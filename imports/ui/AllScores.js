@@ -39,7 +39,7 @@ class Scores extends Component {
     return (
       <div className='white-container center-text'>
         <div className='normal-container'>
-          <h2>Scores</h2>
+          <h2 className='primaryFont'>Scores</h2>
         </div>
         <ReactTable data={this.props.scores} columns={columns} defaultPageSize={10} showPageSizeOptions={false} className='table table-striped table-hover' />
       </div>

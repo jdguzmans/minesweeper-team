@@ -4,8 +4,9 @@ class Instructions extends Component {
   render () {
     return (
       <div className='dark-container'>
-        <h1>Minesweeper Team</h1>
-        <h2>Compete with your friends and get as much points as possible playing within the same board</h2>
+        <h1 className='primaryFont'>Minesweeper Team</h1>
+        <br />
+        <h5>Compete with your friends and get as much points as possible playing within the same board</h5>
       </div>
     )
   }

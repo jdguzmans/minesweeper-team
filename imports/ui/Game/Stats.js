@@ -24,7 +24,7 @@ class GameStats extends Component {
       <div>
         <div className='row'>
           <div className='center-text'>
-            <h2>Total Score: {this.props.score}pts</h2>
+            <h3>Total Score: {this.props.score}pts</h3>
           </div>
         </div>
         <div>

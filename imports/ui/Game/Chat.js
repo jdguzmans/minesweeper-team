@@ -16,7 +16,7 @@ class GameChat extends Component {
   render () {
     return (
       <div className='container-fluid'>
-        <h3 className='font'>Chat</h3>
+        <h2 className='primaryFont'>Chat</h2>
         {!this.props.showingGame &&
           <SendMessage sendMessage={this.props.sendMessage} />
         }

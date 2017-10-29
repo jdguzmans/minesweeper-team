@@ -27,7 +27,8 @@ class Timer extends Component {
   render () {
     return (
       <div>
-        <h4 className='font'>Time: {this.state.timer}s</h4>
+        <img height="30" width="30" alt="Time since game started" src="../../../icn_clock_01.png" /> 
+        <h4>{this.state.timer}s</h4>
       </div>
     )
   }

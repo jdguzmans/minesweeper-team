@@ -12,7 +12,7 @@ class GameStats extends Component {
             <h4 className='font'> {player.score}pts </h4>
           </div>
           <div className='col-sm-4 text-center'>
-            {player.lost ? <h4 style={{color: 'red'}} >Dead</h4> : <h4 style={{color: 'green'}}>Alive</h4>}
+            {player.lost ? <img height="30" width="30" alt="You lost" src="../../../icn_face_03.png" /> : <img height="30" width="30" alt="Still alive" src="../../icn_face_01.png" />}
           </div>
         </div>
       )
@@ -24,7 +24,7 @@ class GameStats extends Component {
       <div>
         <div className='row'>
           <div className='center-text'>
-            <h3>Total Score: {this.props.score}pts</h3>
+            <h4>Total Score: {this.props.score}pts</h4>
           </div>
         </div>
         <div>

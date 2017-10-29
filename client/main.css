@@ -103,9 +103,9 @@ h1, h2, h3, h4, h5, h6, p, .dark-container, white-container, .game-container, .c
   }
 
 .cell-number--1 {
-    background: url("../assets/images/icn_bomb_01.png") no-repeat center center;
+    background: url("../icn_bomb_01.png") no-repeat center center;
     color: black;
-  }
+    }
 
   #login-sign-in-link, #login-name-link, #login-dropdown-list > a, #signup-link, #back-to-login-link {
     color: #007bff;

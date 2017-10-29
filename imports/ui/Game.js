@@ -35,13 +35,13 @@ class Game extends Component {
 
         {!this.props.showingGame && !this.props.game.finishedAt &&
           <div className='center-text dark-container'>
-            <h1>Players</h1>
+            <h1 className = 'primaryFont'>Players</h1>
             <div className='row'>
               <div className='col-sm-6 center-text'>
-                <h3>Invited Players:</h3>
+                <h3 className= 'primaryFont'>Invited Players:</h3>
               </div>
               <div className='col-sm-6 center-text'>
-                <h3>Playing:</h3>
+                <h3 className='primaryFont'>Playing:</h3>
               </div>
             </div>
             <div className='row'>
@@ -66,7 +66,7 @@ class Game extends Component {
           </div>
           <div className='row'>
             <div className='center-text'>
-              <h2>{this.props.game.prettyId}</h2>
+              <h4>{this.props.game.prettyId}</h4>
             </div>
           </div>
           <div className='row'>

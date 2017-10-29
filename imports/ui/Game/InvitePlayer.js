@@ -32,7 +32,7 @@ class InvitePlayer extends Component {
           <div className='form-row'>
             <label className='control-label col-sm-2'>Invite</label>
             <div className='col-sm-8'>
-              <input name='invitedPlayer' type='text' className='form-control' value={this.state.invitedPlayer} onChange={this.handleInputChange} placeholder='Enter username' />
+              <input aria-label="Invite players here" name='invitedPlayer' type='text' className='form-control' value={this.state.invitedPlayer} onChange={this.handleInputChange} placeholder='Enter username' />
             </div>
             <div className='col-sm-2'>
               <button type='submit' className='btn btn-default'>Invite</button>

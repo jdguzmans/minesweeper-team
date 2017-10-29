@@ -66,7 +66,7 @@ class Game extends Component {
           </div>
           <div className='row'>
             <div className='center-text'>
-              <h4>{this.props.game.prettyId}</h4>
+              <h4>Id: {this.props.game.prettyId}</h4>
             </div>
           </div>
           <div className='row'>
@@ -78,9 +78,6 @@ class Game extends Component {
           <div className='center-block center-text'>
             <Map showingGame={this.props.showingGame} gameMap={this.props.game.gameMap} selectSquare={this.props.selectSquare} />
           </div>
-
-         
-
         </div>
        
          <div className='dark-container'>

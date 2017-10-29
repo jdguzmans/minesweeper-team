@@ -31,7 +31,7 @@ class SendGameMessage extends Component {
           <div className='form-row'>
             <label className='control-label col-sm-2'>Send a message</label>
             <div className='col-sm-8'>
-              <textarea name='message' type='text' className='form-control' rows='2' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
+              <textarea aria-label="Write message here" name='message' type='text' className='form-control' rows='2' value={this.state.message} onChange={this.handleInputChange} placeholder='Write something' />
             </div>
             <div className='col-sm-2'>
               <button type='submit' className='btn btn-default'>Send</button>

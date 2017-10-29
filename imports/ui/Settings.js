@@ -31,6 +31,7 @@ class GamesSettings extends Component {
         <div className='normal-container'>
           <button
             key={game._id}
+            aria-label="Active game"
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-info'>
             {game.prettyId}
@@ -46,6 +47,7 @@ class GamesSettings extends Component {
         <div className='normal-container'>
           <button
             key={game._id}
+            aria-label="Active game"
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-warning'>
             {game.prettyId}

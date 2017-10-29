@@ -66,7 +66,7 @@ class Game extends Component {
           </div>
           <div className='row'>
             <div className='center-text'>
-              <h4>Id: {this.props.game.prettyId}</h4>
+              <h5>Id: {this.props.game.prettyId}</h5>
             </div>
           </div>
           <div className='row'>

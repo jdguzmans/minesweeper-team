@@ -22,3 +22,5 @@ accounts-ui-unstyled@1.2.1
 practicalmeteor:mocha
 standard-minifier-js
 dynamic-import
+meteorhacks:inject-data
+meteorhacks:inject-initial

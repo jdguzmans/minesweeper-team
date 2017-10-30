@@ -1,4 +1,4 @@
-/* global alert */
+/* global */
 
 import React, { Component } from 'react'
 import { Meteor } from 'meteor/meteor'
@@ -22,9 +22,9 @@ class App extends Component {
     }
   }
 
-  newGame () {
-    Meteor.call('games.newGame', (err, _id) => {
-      if (err) alert(err.message)
+  newGame (rows, cols) {
+    Meteor.call('games.newGame', rows, cols, (err, _id) => {
+      if (err) this.setState({errorMessage: err.message})
       else {
         this.props.games.forEach(game => {
           if (game._id === _id) this.setState({game: game})

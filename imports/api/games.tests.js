@@ -31,7 +31,7 @@ if (Meteor.isServer) {
 
       describe('newGame', function () {
         it('should create a new game without any field selected', function () {
-          let newGameId = Meteor.call('games.newGame')
+          let newGameId = Meteor.call('games.newGame', 15, 20)
           let newGame = Games.findOne({_id: newGameId})
           assert(newGame)
           assert(newGame.createdAt)
@@ -45,7 +45,7 @@ if (Meteor.isServer) {
         it('shoud invite a player to a game', function () {
           let player2 = {username: faker.name.findName()}
           Factory.create('user', player2)
-          let gameId = Meteor.call('games.newGame')
+          let gameId = Meteor.call('games.newGame', 15, 20)
           Meteor.call('games.invite', gameId, player2.username)
           let game = Games.findOne({_id: gameId})
           assert.equal(game.invites.includes(player2.username), true, 'did not invited the player')
@@ -65,7 +65,7 @@ if (Meteor.isServer) {
           user1 = Factory.create('user')
           sinon.stub(Meteor, 'user')
           Meteor.user.returns(user1)
-          let gameId = Meteor.call('games.newGame')
+          let gameId = Meteor.call('games.newGame', 15, 20)
           game = Games.findOne({_id: gameId})
           Meteor.user.restore()
 
@@ -112,7 +112,7 @@ if (Meteor.isServer) {
           user1 = Factory.create('user')
           sinon.stub(Meteor, 'user')
           Meteor.user.returns(user1)
-          let gameId = Meteor.call('games.newGame')
+          let gameId = Meteor.call('games.newGame', 15, 20)
           game = Games.findOne({_id: gameId})
         })
 
@@ -138,7 +138,7 @@ if (Meteor.isServer) {
           user1 = Factory.create('user')
           sinon.stub(Meteor, 'user')
           Meteor.user.returns(user1)
-          let gameId = Meteor.call('games.newGame')
+          let gameId = Meteor.call('games.newGame', 15, 20)
           game = Games.findOne({_id: gameId})
         })
 

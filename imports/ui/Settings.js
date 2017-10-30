@@ -3,6 +3,26 @@
 import React, { Component } from 'react'
 
 class Settings extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      rows: 10,
+      cols: 15
+    }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.newGame = this.newGame.bind(this)
+  }
+
+  newGame (e) {
+    e.preventDefault()
+    this.props.newGame(parseInt(this.state.rows), parseInt(this.state.cols))
+  }
+
+  handleInputChange (e) {
+    e.preventDefault()
+    this.setState({[e.target.name]: e.target.value})
+  }
+
   renderGameInvites () {
     return this.props.invites.map((invite, i) => {
       return (
@@ -62,11 +82,31 @@ class Settings extends Component {
       <div>
         <div className='normal-container'>
           <h2 className='primaryFont'>New Game</h2>
-          <button
-            onClick={this.props.newGame}
-            className='btn btn-success'>
-            Create
-          </button>
+          <form className='form-horizontal' onSubmit={this.newGame}>
+            <div className='form-row'>
+              <div className='col-sm-6'>
+                <label htmlfor='rowsInput'>Rows</label>
+              </div>
+              <div className='col-sm-6'>
+                <input type='number' min='5' max='15' step='1' name='rows' className='form-control' id='rowsInput' value={this.state.rows} onChange={this.handleInputChange} />
+              </div>
+            </div>
+            <div className='form-row'>
+              <div className='col-sm-6'>
+                <label htmlfor='colsInput'>Columns</label>
+              </div>
+              <div className='col-sm-6'>
+                <input type='number' min='15' max='20' step='1' name='cols' className='form-control' id='colsInput' value={this.state.cols} onChange={this.handleInputChange} />
+              </div>
+            </div>
+            <div className='center-text'>
+              <button
+                type='submit'
+                className='btn btn-success'>
+                Create
+            </button>
+            </div>
+          </form>
         </div>
         <div className='normal-container'>
           <h2 className='primaryFont'>Game Invites</h2>

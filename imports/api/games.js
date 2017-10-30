@@ -29,10 +29,14 @@ if (Meteor.isServer) {
   })
 
   Meteor.methods({
-    'games.newGame' () {
+    'games.newGame' (rows, cols) {
       if (!Meteor.user()._id) throw new Meteor.Error('You are not authorized')
+      if (!rows) throw new Meteor.Error('Should select a rows number')
+      if (!cols) throw new Meteor.Error('Should select a columns number')
+      if (rows < 5 || rows > 15) throw new Meteor.Error('Invalid rows dimension, domain between 10 and 20')
+      if (cols < 15 || cols > 20) throw new Meteor.Error('Invalid columns dimension, domain between 5 and 10')
 
-      let gameMap = Logic.createGameMap(10, 13)
+      let gameMap = Logic.createGameMap(rows, cols)
       let date = new Date()
       let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
       let month = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)

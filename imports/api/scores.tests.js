@@ -22,7 +22,7 @@ if (Meteor.isServer) {
       user1 = Factory.create('user')
       sinon.stub(Meteor, 'user')
       Meteor.user.returns(user1)
-      let gameId = Meteor.call('games.newGame')
+      let gameId = Meteor.call('games.newGame', 15, 20)
       game = Games.findOne({_id: gameId})
     })
 

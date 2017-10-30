@@ -24,3 +24,5 @@ standard-minifier-js
 dynamic-import
 meteorhacks:inject-data
 meteorhacks:inject-initial
+xolvio:cleaner
+dburles:factory

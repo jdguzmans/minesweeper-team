@@ -22,6 +22,7 @@ Meteor.methods({
       let games = playerDB.games.length
       let scoreSum = 0
       let timeSum = 0
+
       playerDB.games.forEach(game => {
         scoreSum = scoreSum + game.totalScore
         timeSum = timeSum + game.time

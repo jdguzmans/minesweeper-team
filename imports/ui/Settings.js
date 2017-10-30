@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react'
 
-class GamesSettings extends Component {
+class Settings extends Component {
   renderGameInvites () {
-    return this.props.invites.map(invite => {
+    return this.props.invites.map((invite, i) => {
       return (
-        <div className='normal-container'>
+        <div className='normal-container' key={i}>
           {invite.gamePrettyId}
           <button
             key={invite.gameId + 'a'}
@@ -26,12 +26,12 @@ class GamesSettings extends Component {
   }
 
   renderCurrentGames () {
-    return this.props.games.map(game => {
+    return this.props.games.map((game, i) => {
       return (
-        <div className='normal-container'>
+        <div className='normal-container' key={i}>
           <button
             key={game._id}
-            aria-label="Active game"
+            aria-label='Active game'
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-info'>
             {game.prettyId}
@@ -42,12 +42,12 @@ class GamesSettings extends Component {
   }
 
   renderFinishedGames () {
-    return this.props.finishedGames.map(game => {
+    return this.props.finishedGames.map((game, i) => {
       return (
-        <div className='normal-container'>
+        <div className='normal-container' key={i}>
           <button
             key={game._id}
-            aria-label="Active game"
+            aria-label='Active game'
             onClick={() => this.props.selectGame(game._id)}
             className='btn btn-warning'>
             {game.prettyId}
@@ -85,4 +85,4 @@ class GamesSettings extends Component {
   }
 }
 
-export default GamesSettings
+export default Settings

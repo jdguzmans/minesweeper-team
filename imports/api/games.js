@@ -32,7 +32,7 @@ if (Meteor.isServer) {
     'games.newGame' () {
       if (!Meteor.user()._id) throw new Meteor.Error('You are not authorized')
 
-      let gameMap = Logic.createGameMap(13, 10)
+      let gameMap = Logic.createGameMap(10, 13)
       let date = new Date()
       let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
       let month = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
@@ -134,11 +134,9 @@ Meteor.methods({
     })
 
     Games.update({_id: game._id},
-      {
-        $push: {
-          chat: {username: username, text: text, date: new Date(), color: color}
-        }
-      }
+      { $push: {
+        chat: {username: username, text: text, date: new Date(), color: color}
+      } }
     )
   }
 })

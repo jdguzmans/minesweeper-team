@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class GameStats extends Component {
+class Stats extends Component {
   renderPlayerScores () {
     return this.props.players.map(player => {
       return (
@@ -35,4 +35,4 @@ class GameStats extends Component {
   }
 }
 
-export default GameStats
+export default Stats

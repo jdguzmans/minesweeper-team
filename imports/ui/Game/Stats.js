@@ -12,7 +12,7 @@ class Stats extends Component {
             <h4 className='font'> {player.score}pts </h4>
           </div>
           <div className='col-sm-4 text-center'>
-            {player.lost ? <img height="30" width="30" alt="You lost" src="../../../icn_face_03.png" /> : <img height="30" width="30" alt="Still alive" src="../../icn_face_01.png" />}
+            {player.lost ? <img height='30' width='30' alt='You lost' src='../../../icn_face_03.png' /> : <img height='30' width='30' alt='Still alive' src='../../icn_face_01.png' />}
           </div>
         </div>
       )

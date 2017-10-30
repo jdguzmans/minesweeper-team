@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor'
-import { Inject } from "meteor/meteorhacks:inject-initial";
+import { Inject } from "meteor/meteorhacks:inject-initial"
 import '../imports/api/games.js'
 import '../imports/api/scores.js'
 

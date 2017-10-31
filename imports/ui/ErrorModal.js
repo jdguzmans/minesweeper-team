@@ -28,3 +28,5 @@ class ErrorModal extends Component {
 }
 
 export default ErrorModal
+// pudieran usar SweetAlert en vez de tener este tipo de modals, es muy util
+//https://sweetalert.js.org/

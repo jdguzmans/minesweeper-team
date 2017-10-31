@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo'
 import { Meteor } from 'meteor/meteor'
-// import { check } from 'meteor/check'
+import { Games} from './games.js'
 
 export const Scores = new Mongo.Collection('scores')
 
@@ -11,8 +11,14 @@ if (Meteor.isServer) {
   })
 
   Meteor.methods({
-    'scores.addScore' (score, players, time) {
-      players.forEach(player => {
+    'scores.addScore' (gameId) {
+      let game = Games.findOne({_id: gameId})
+      if (!game) throw new Meteor.Error('Game does not exist, sorry JuanCardona')
+      if (!game.finishedAt) throw new Meteor.Error('Game is not finished yet, sorry JuanCardona')
+      let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
+      let score = game.score
+
+      game.players.forEach(player => {
         let playerDB = Scores.findOne({username: player.username})
         if (!playerDB) playerDB = {username: player.username, games: []}
 

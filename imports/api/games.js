@@ -101,10 +101,11 @@ if (Meteor.isServer) {
         })
         if (finished) {
           game.finishedAt = new Date()
-          let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
-          Meteor.call('scores.addScore', scores.total, game.players, time)
+          Games.update({_id: game._id}, game)
+          Meteor.call('scores.addScore', game._id)
+        } else {
+          Games.update({_id: game._id}, game)
         }
-        Games.update({_id: game._id}, game)
       }
     }
   })

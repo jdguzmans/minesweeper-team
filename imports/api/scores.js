@@ -15,6 +15,9 @@ if (Meteor.isServer) {
       let game = Games.findOne({_id: gameId})
       if (!game) throw new Meteor.Error('Game does not exist, sorry JuanCardona')
       if (!game.finishedAt) throw new Meteor.Error('Game is not finished yet, sorry JuanCardona')
+      if (game.countedScore) throw new Meteor.Error('Game was already counted for the players scores, sorry JuanCardona')
+      game.countedScore = true
+      Games.update({_id: game._id}, game)
       let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
       let score = game.score
 

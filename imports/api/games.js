@@ -53,6 +53,7 @@ if (Meteor.isServer) {
         players: [ { username: Meteor.user().username, color: '#FF8080', lost: false, score: 0 } ],
         invites: [],
         score: 0,
+        countedScore: false,
         chat: []
       }, (err, res) => {
         if (err) throw new Meteor.Error('ERROR')

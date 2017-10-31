@@ -176,3 +176,4 @@ export default createContainer(() => {
     showingGame: showingGame
   }
 }, App)
+//La organizacin del código es muy buena, es fácil encontrar donde están las funciones que lllaman y las otras clases que utilizan

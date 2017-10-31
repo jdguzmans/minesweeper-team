@@ -70,6 +70,42 @@ if (Meteor.isServer) {
       Games.update({_id: gameId},
         {$addToSet: { invites: username }}
       )
+    },
+
+    'games.selectSquare' (i, j, gameId) {
+      let game = Games.findOne({_id: gameId})
+      if (!game.startedAt) game.startedAt = new Date()
+
+      let username = Meteor.user().username
+      let plays = true
+      game.players.forEach(player => {
+        if (player.username === username && player.lost) plays = false
+      })
+      if (plays) {
+        let color
+        game.players.forEach(player => {
+          if (player.username === username) color = player.color
+        })
+        let newMap = Logic.selectSquare(i, j, game.gameMap, username, color)
+        let scores = Logic.calculateScores(game.gameMap, username)
+        game.gameMap = newMap
+        game.score = scores.total
+
+        let finished = true
+        game.players.forEach(player => {
+          if (player.username === username) {
+            player.score = scores.user.score
+            player.lost = scores.user.lost
+          }
+          if (!player.lost) finished = false
+        })
+        if (finished) {
+          game.finishedAt = new Date()
+          let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
+          Meteor.call('scores.addScore', scores.total, game.players, time)
+        }
+        Games.update({_id: game._id}, game)
+      }
     }
   })
 }
@@ -92,42 +128,6 @@ Meteor.methods({
     Games.update({_id: gameId},
       { $pull: { invites: Meteor.user().username } }
     )
-  },
-
-  'games.selectSquare' (i, j, gameId) {
-    let game = Games.findOne({_id: gameId})
-    if (!game.startedAt) game.startedAt = new Date()
-
-    let username = Meteor.user().username
-    let plays = true
-    game.players.forEach(player => {
-      if (player.username === username && player.lost) plays = false
-    })
-    if (plays) {
-      let color
-      game.players.forEach(player => {
-        if (player.username === username) color = player.color
-      })
-      let newMap = Logic.selectSquare(i, j, game.gameMap, username, color)
-      let scores = Logic.calculateScores(game.gameMap, username)
-      game.gameMap = newMap
-      game.score = scores.total
-
-      let finished = true
-      game.players.forEach(player => {
-        if (player.username === username) {
-          player.score = scores.user.score
-          player.lost = scores.user.lost
-        }
-        if (!player.lost) finished = false
-      })
-      if (finished) {
-        game.finishedAt = new Date()
-        let time = parseInt((game.finishedAt.getTime() - (new Date(game.createdAt)).getTime()) / 1000)
-        Meteor.call('scores.addScore', scores.total, game.players, time)
-      }
-      Games.update({_id: game._id}, game)
-    }
   },
 
   'games.sendMessage' (gameId, text) {

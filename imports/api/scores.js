@@ -9,29 +9,29 @@ if (Meteor.isServer) {
   Meteor.publish('scores', function userScoresPublication () {
     return Scores.find({})
   })
-}
 
-Meteor.methods({
-  'scores.addScore' (score, players, time) {
-    players.forEach(player => {
-      let playerDB = Scores.findOne({username: player.username})
-      if (!playerDB) playerDB = {username: player.username, games: []}
+  Meteor.methods({
+    'scores.addScore' (score, players, time) {
+      players.forEach(player => {
+        let playerDB = Scores.findOne({username: player.username})
+        if (!playerDB) playerDB = {username: player.username, games: []}
 
-      playerDB.games.push({totalScore: score, playerScore: player.score, time: time})
+        playerDB.games.push({totalScore: score, playerScore: player.score, time: time})
 
-      let games = playerDB.games.length
-      let scoreSum = 0
-      let timeSum = 0
+        let games = playerDB.games.length
+        let scoreSum = 0
+        let timeSum = 0
 
-      playerDB.games.forEach(game => {
-        scoreSum = scoreSum + game.totalScore
-        timeSum = timeSum + game.time
+        playerDB.games.forEach(game => {
+          scoreSum = scoreSum + game.totalScore
+          timeSum = timeSum + game.time
+        })
+
+        playerDB.scoreSum = scoreSum
+        playerDB.scoreAverage = parseInt(100 * scoreSum / games) / 100
+        playerDB.speed = parseInt(100 * 60 * scoreSum / timeSum) / 100
+        Scores.upsert({username: playerDB.username}, playerDB)
       })
-
-      playerDB.scoreSum = scoreSum
-      playerDB.scoreAverage = parseInt(100 * scoreSum / games) / 100
-      playerDB.speed = parseInt(100 * 60 * scoreSum / timeSum) / 100
-      Scores.upsert({username: playerDB.username}, playerDB)
-    })
-  }
-})
+    }
+  })
+}

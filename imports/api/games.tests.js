@@ -122,7 +122,7 @@ if (Meteor.isServer) {
 
         it('should send message', function () {
           let text = faker.lorem.sentence()
-          Meteor.call('games.sendMessage', game, text)
+          Meteor.call('games.sendMessage', game._id, text)
           let messagedGame = Games.findOne({_id: game._id})
           assert.equal(messagedGame.chat[0].text, text, 'the message was incorrect')
           assert.equal(messagedGame.chat[0].username, Meteor.user().username, 'the message was not correctly sent by the correct user')
@@ -152,7 +152,7 @@ if (Meteor.isServer) {
             let playedGame = Games.findOne({_id: game._id})
             let row = Math.floor(Math.random() * ((playedGame.gameMap.length - 1) - 0 + 1)) + 0
             let col = Math.floor(Math.random() * ((playedGame.gameMap[0].length - 1) - 0 + 1)) + 0
-            Meteor.call('games.selectSquare', row, col, playedGame)
+            Meteor.call('games.selectSquare', row, col, playedGame._id)
             playedGame = Games.findOne({_id: playedGame._id})
             assert(playedGame.startedAt)
             assert(playedGame.gameMap[row][col].selectedBy)

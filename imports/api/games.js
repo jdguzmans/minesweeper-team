@@ -94,7 +94,8 @@ Meteor.methods({
     )
   },
 
-  'games.selectSquare' (i, j, game) {
+  'games.selectSquare' (i, j, gameId) {
+    let game = Games.findOne({_id: gameId})
     if (!game.startedAt) game.startedAt = new Date()
 
     let username = Meteor.user().username
@@ -129,7 +130,8 @@ Meteor.methods({
     }
   },
 
-  'games.sendMessage' (game, text) {
+  'games.sendMessage' (gameId, text) {
+    let game = Games.findOne({_id: gameId})
     let username = Meteor.user().username
 
     let color

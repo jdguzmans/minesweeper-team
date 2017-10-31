@@ -62,7 +62,7 @@ class App extends Component {
 
   selectSquare (i, j) {
     if (!this.props.showingGame) {
-      Meteor.call('games.selectSquare', i, j, this.state.game, err => {
+      Meteor.call('games.selectSquare', i, j, this.state.game._id, err => {
         if (err) this.setState({errorMessage: err.message})
       })
     }

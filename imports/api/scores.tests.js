@@ -36,7 +36,7 @@ if (Meteor.isServer) {
         let playedGame = Games.findOne({_id: game._id})
         let row = Math.floor(Math.random() * ((playedGame.gameMap.length - 1) - 0 + 1)) + 0
         let col = Math.floor(Math.random() * ((playedGame.gameMap[0].length - 1) - 0 + 1)) + 0
-        Meteor.call('games.selectSquare', row, col, playedGame)
+        Meteor.call('games.selectSquare', row, col, playedGame._id)
         playedGame = Games.findOne({_id: playedGame._id})
 
         done = playedGame.finishedAt

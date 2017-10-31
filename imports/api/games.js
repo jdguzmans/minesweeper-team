@@ -135,7 +135,6 @@ Meteor.methods({
   'games.sendMessage' (gameId, text) {
     let game = Games.findOne({_id: gameId})
     let username = Meteor.user().username
-
     let color
     game.players.forEach(player => {
       if (player.username === username) color = player.color

@@ -80,7 +80,7 @@ class App extends Component {
   }
 
   sendMessage (message) {
-    Meteor.call('games.sendMessage', this.state.game, message, err => {
+    Meteor.call('games.sendMessage', this.state.game._id, message, err => {
       if (err) this.setState({errorMessage: err.message})
     })
   }

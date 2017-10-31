@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo'
 import { Meteor } from 'meteor/meteor'
-import { Games} from './games.js'
+import { Games } from './games.js'
 
 export const Scores = new Mongo.Collection('scores')
 

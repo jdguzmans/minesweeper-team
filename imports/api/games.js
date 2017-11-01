@@ -9,6 +9,7 @@ export const Games = new Mongo.Collection('games')
 
 if (Meteor.isServer) {
   // this code only runs on the server
+  //Por seguridad, me parece bien que solo muestren los juegos que están relacionados con ese jugador
   Meteor.publish('games', function gamesPublication () {
     let username = Meteor.user() ? Meteor.user().username : undefined
     if (username) {
@@ -147,3 +148,5 @@ Meteor.methods({
     )
   }
 })
+
+//Este comentario no pertenece aquí, pero me gustaron mucho las encuestas que hicieron, aparte de que pusieron un poco el contexto de cada persona, con estrato, edad, etc, las pregunts acerca de la página son muy precisas

@@ -166,3 +166,4 @@ if (Meteor.isServer) {
     })
   })
 }
+//Tenían muchos métodos por probar! :´(

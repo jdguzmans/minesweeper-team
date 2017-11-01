@@ -176,3 +176,4 @@ export default createContainer(() => {
     showingGame: showingGame
   }
 }, App)
+//otro comentario: las nuevas funcionalidad que propusieron, las implementaron y quedó muy chevere, los felicito

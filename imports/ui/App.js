@@ -176,3 +176,5 @@ export default createContainer(() => {
     showingGame: showingGame
   }
 }, App)
+
+// Excelente que usen los createContainer, los methods y el subscribe y publish de meteor. Buenas prácticas de programación en meteor / React 

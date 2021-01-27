@@ -26,7 +26,8 @@ if (Meteor.isServer) {
       })
 
       afterEach(function () {
-        Meteor.user.restore()
+        Meteor.user.restore();
+        resetDatabase();
       })
 
       describe('newGame', function () {
@@ -76,7 +77,8 @@ if (Meteor.isServer) {
         })
 
         afterEach(function () {
-          Meteor.user.restore()
+          Meteor.user.restore();
+          resetDatabase();
         })
 
         describe('accept', function () {
@@ -117,7 +119,8 @@ if (Meteor.isServer) {
         })
 
         afterEach(function () {
-          Meteor.user.restore()
+          Meteor.user.restore();
+          resetDatabase();
         })
 
         it('should send message', function () {
@@ -143,7 +146,8 @@ if (Meteor.isServer) {
         })
 
         afterEach(function () {
-          Meteor.user.restore()
+          Meteor.user.restore();
+          resetDatabase();
         })
 
         it('should select correctly the square', function () {

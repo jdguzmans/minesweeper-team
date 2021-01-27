@@ -87,3 +87,4 @@ class Game extends Component {
 }
 
 export default Game
+// Tienen muy bien modularizado todo, felicitaciones. Así se entiende mucho más el código que teniendo todo en un solo render
